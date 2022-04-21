@@ -1,0 +1,262 @@
+/****************************MENU NAVBAR************************************/
+div.menu-navbar{
+    width: 100%;
+    height: auto;
+    background-color: $cor-base;
+    padding: 5px 0;
+    color:$cor-texto;
+    div.nav-container-burger{
+        display: flex;
+        align-content:center;
+        align-items: center;
+        div.position-burger{
+            width: 100%;
+            margin-left: 10px;
+            cursor:pointer;
+        }
+        span.linha-burger{
+            width: 25px;
+            margin: 5px 5px;
+            height: 3px;
+            background-color:$cor-texto;
+            display: block;
+        }
+    }
+    div.conatiner-logo-opcoes{
+        display: flex;
+        flex-direction: row;
+        div.logo-nav{
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            img{
+                width: 50px;
+            }
+        }
+        div.opcoes-nav{
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            align-content: flex-end;
+            align-items: flex-end;
+            .dropdown{
+                margin-right: 23px;
+                a.dropdown-toggle{
+                    color:$cor-texto;
+                }
+            }
+        }
+        @media (max-width: 575px) {
+            div.logo-nav{
+                justify-content: flex-start;
+            }
+         }
+
+        @media (max-width: 303px) {
+            div.logo-nav{
+                width: 100%;
+            }
+            div.opcoes-nav{
+                width: 100%;
+            }
+         }
+        
+    }
+}
+/*****************************CAMADA************************************/
+div.camada-sidebar-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0,0,0,.6);
+    z-index: 1000;
+    display: none;
+}
+/*****************************SIDEBAR************************************/
+$width-sidebar: 300px;
+$width-sidebar-ngtv: calc($width-sidebar * -1);
+$cor-sidebar:rgb(33, 37, 41);
+@keyframes sidebar_left_entrance{
+    0%{
+        left: $width-sidebar-ngtv;
+    }
+    25%{
+        left: calc($width-sidebar-ngtv + 100px);
+         /*transform: rotateX(90deg); e transform: skew(90deg)*/   
+    }
+    50%{
+        left: calc($width-sidebar-ngtv + 200px);
+    }
+    100%{
+        left: calc($width-sidebar-ngtv + 300px);
+    }
+}
+@keyframes sidebar_left_exit{
+    0%{
+        left: 0;
+    }
+    25%{
+        left: -100px;
+         /*transform: rotateX(90deg); e transform: skew(90deg)*/   
+    }
+    50%{
+        left: -200px;
+    }
+    100%{
+        left: -300px;
+    }
+}
+$sidebar-tempo-animcao: .5s;
+div.sidebar-container.animate-left-entrance{
+    animation-name:sidebar_left_entrance;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: $sidebar-tempo-animcao;
+}
+
+div.sidebar-container.animate-left-exit{
+    animation-name:sidebar_left_exit;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: $sidebar-tempo-animcao;
+}
+div.sidebar-container{
+    position: absolute;
+    z-index: 10001;
+    height: 100%;
+    width: $width-sidebar;
+    left: $width-sidebar-ngtv;
+    background-color: $cor-sidebar;
+    color:$cor-texto;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100%;
+    div.exit-sidebar-arrow{
+        position: absolute;
+        top:10px;
+        right: 7px;
+        background-color:white;
+        color:black;
+        cursor:pointer;
+        padding: 10px 15px;
+        z-index: 10002;
+        border-radius:7px;
+    }
+    div.container-perfil{
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-content:center;
+        align-items:center;
+        div.position-perfil{
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            $radius: 10px;
+            img{
+                border-radius: $radius;
+                width: 100px;
+                height: 100px;
+                margin-right: 0px;
+            }
+            .opcoes{
+                display: flex;
+                flex-direction: column;
+                border-radius: $radius;
+                div{
+                    display: flex;
+                    justify-content: center;
+                    align-content:center;
+                    align-items:center;
+                    height: 50%;
+                    border-radius: $radius;
+                    a{
+                        color:$cor-base;
+                    }
+                    &:hover{
+                        a{
+                            color:black;
+                        }
+                        background-color:white;
+                    }
+                }
+            }
+        }
+    }
+    div.container-links{
+        width: 100%;
+        div.link-dpDown{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            div.link-hover{
+                width: 100%;
+                background-color: darken($cor-base, 30%);
+                padding: 10px 0;
+                cursor:pointer;
+                &:hover{
+                    filter: brightness(140%);
+                }
+            }
+            div{
+                display:flex;
+                justify-content: center;
+            }
+            div.seta i.rotate{
+                transform: rotate(90deg);
+            }
+            div.icone, div.seta{
+                width: 10%;
+                align-content:center;
+                align-items:center;
+            }
+            div.nome{
+                width: 80%;
+            }
+            div.container-sublinks{
+                position: relative;
+                width: 100%;
+                min-height: 70px;
+                height: auto;
+                // left: 0;
+                // top: 44px;
+                background-color:darken($cor-base, 40%);
+                display: flex;
+                flex-direction: column;
+                a{
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    height: 30px;
+                    text-decoration: none;
+                    color:white;
+                    &:hover{
+                        background-color:white;
+                        color: black;
+                    }
+                    &:hover div.link-icone{
+                        background-color: darken($cor-base, 30%);
+                        color: white;
+                        filter: brightness(140%);
+                    }
+                    div.link-icone{
+                        width: 10%;
+                        align-content:center;
+                        justify-content: center;
+                        align-items:center;                        
+                    }
+                    div.link-nome{
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+}
