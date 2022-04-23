@@ -5,10 +5,10 @@
             <input type="search" name="" id="" class="form-control" placeholder="Busca...">
         </div>
         <div class="col-xl-2 col-sm-3 d-flex justify-content-end">
-            <a href="{{route('view.clientes.create')}}" class="btn btn-blue">
+            <button type="button" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#modalVincularEspecialidade">
                 <i class="fa-solid fa-plus"></i>
                 Vincular
-            </a>
+            </button>
         </div>
     </div>
     <div class="row">
@@ -50,5 +50,12 @@
     </div>
 
     {{-- component modal de vinculação --}}
+    <x-modal titulo="Vincular especialidade" id="modalVincularEspecialidade">
+        teste
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </x-modal>
 </div>
 
