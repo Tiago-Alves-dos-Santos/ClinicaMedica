@@ -2,6 +2,11 @@
     {{-- Do your work, then step back. --}}
     <livewire:components.medico.form-create-update :id="$id">
 
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <livewire:components.especialidade-medico.table>
+        </div>
+    </div>
 
     <script>
         $(function(){
