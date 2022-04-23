@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Livewire\Components\Medico;
-
 use App\Models\Medico;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -9,7 +8,8 @@ use App\Http\Classes\Configuracao;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+//start contantes
+new Configuracao();
 class FormCreateUpdate extends Component
 {
     use WithFileUploads;
@@ -32,7 +32,7 @@ class FormCreateUpdate extends Component
         "title" => '',
         "information" => '',
         "type" => 1,
-        "time" => Configuracao::TIME_TOAST
+        "time" => 5000
     ];
     protected $listeners = [
         'medico-reload' => '$refresh',
@@ -78,6 +78,7 @@ class FormCreateUpdate extends Component
     }
     public function cadastrar()
     {
+
         $this->validate();
         try {
             if($this->validateCpf()){
@@ -96,16 +97,16 @@ class FormCreateUpdate extends Component
                     $medico = $medico->fresh();
                     if(!is_null($this->perfil_foto)){
                         Medico::where('id', $medico->id)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_MEDICO."$medico->id.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "$this->id_medico.{$this->perfil_foto->extension()}"
                         ]);
 
-                        if (!File::exists(Configuracao::PATH_PERFIL_MEDICO)){
-                            mkdir(Configuracao::PATH_PERFIL_MEDICO, 0777, true);
+                        if (!File::exists(PATH_PERFIL_MEDICO)){
+                            mkdir(PATH_PERFIL_MEDICO, 0777, true);
                         }
                         // $this->perfil_foto->storeAs('medico',"$.{$this->perfil_foto->extension()}");
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
-                        ->save(Configuracao::PATH_PERFIL_MEDICO."$medico->id.{$this->perfil_foto->extension()}");
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
+                        ->save(PATH_PERFIL_MEDICO."$medico->id.{$this->perfil_foto->extension()}");
                     }
                     $this->msg_toast['title'] = 'Sucesso!';
                     $this->msg_toast['information'] = 'Cadastro realizado com sucesso!';
@@ -147,14 +148,14 @@ class FormCreateUpdate extends Component
                     ]);
                     if(!is_null($this->perfil_foto)  && !is_string($this->perfil_foto)){
                         Medico::where('id', $this->id_medico)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_MEDICO."$this->id_medico.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "$this->id_medico.{$this->perfil_foto->extension()}"
                         ]);
-                        Storage::delete(Configuracao::PATH_PERFIL_MEDICO."{$this->id_medico}.{$this->perfil_foto->extension()}");
-                        if (!File::exists(Configuracao::PATH_PERFIL_MEDICO)){
-                            mkdir(Configuracao::PATH_PERFIL_MEDICO, 0777, true);
+                        Storage::delete(PATH_PERFIL_MEDICO."{$this->id_medico}.{$this->perfil_foto->extension()}");
+                        if (!File::exists(PATH_PERFIL_MEDICO)){
+                            mkdir(PATH_PERFIL_MEDICO, 0777, true);
                         }
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
                         ->save("storage/medico/"."$this->id_medico.{$this->perfil_foto->extension()}");
 
                         // $this->perfil_foto->storeAs('medico',"$this->id_medico.{$this->perfil_foto->extension()}");
