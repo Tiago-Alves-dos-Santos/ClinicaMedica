@@ -11,7 +11,7 @@
                 @if (!is_string($perfil_foto) && !is_null($perfil_foto))
                     <img src="{{ $perfil_foto->temporaryUrl() }}" class="img-fluid">
                 @elseif(is_string($perfil_foto))
-                    <img src="{{asset($perfil_foto)}}" alt="" class="img-fluid">
+                    <img src="{{asset(Configuracao::getPathRecepcao('perfil').$perfil_foto)}}" alt="" class="img-fluid">
                 @else
                     <img src="{{asset('img/perfil_anonimo.png')}}" alt="" class="img-fluid">
                 @endif

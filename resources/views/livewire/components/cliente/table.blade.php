@@ -27,7 +27,7 @@
                 <tr>
                     <td class="perfil" style="position: relative;">
                         @if (!is_null($value->perfil_foto))
-                        <img src="{{asset($value->perfil_foto)}}" class="img-fluid" alt="">
+                        <img src="{{asset(Configuracao::getPathCliente('perfil').$value->perfil_foto)}}" class="img-fluid" alt="">
                         @else
                         <img src="{{asset('img/perfil_anonimo.png')}}" class="img-fluid" alt="">
                         @endif

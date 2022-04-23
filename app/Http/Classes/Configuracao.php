@@ -5,6 +5,8 @@ define('PRODUCAO', false);
 //VALOR EM PX - INTERVERTION CONVERSÃO DE TAMANHO
 define('PERFIL_WIDTH', 200);
 define('PERFIL_HEIGHT', 200);
+
+
 //VALORES ABAIXO USADO PARA CAMINHO DA BIBLIOTECA ITENVERTION, DIFERENTE DE USAR STORAGE AS
 //LOCAL DE SALVAR O UPLOAD, ´SO VALE PARA REGISTROS A CADASTRAR, CADASTRADOS NÃO SOFREM MUDANÇAS
 define('PATH_PERFIL_CLIENTE', public_path()."/storage/cliente/");
@@ -14,12 +16,70 @@ define('PATH_PERFIL_MEDICO', public_path()."/storage/medico/");
 //tempo de desaparecimento do toast, false = permanente
 define('TIME_TOAST',5000);
 if(PRODUCAO){
-
+    /******pasta - arquivos storage - StoraGe(SG)******/
+    define('PATH_PERFIL_CLIENTE_SG', "cliente/");
 }else{
-
+    /******pasta - arquivos storage - StoraGe(SG)******/
+    define('PATH_PERFIL_CLIENTE_SG', "public/cliente/");
+    define('PATH_PERFIL_RECEPECIONISTA_SG', "public/recepcao/");
+    define('PATH_PERFIL_MEDICO_SG', "public/medico/");
 }
 class Configuracao
 {
+    /**
+     * [Description for isProduction]
+     *
+     * @return [type]
+     *
+     */
+    public static function isProduction()
+    {
+        return PRODUCAO;
+    }
+
+    /**
+     * [Description for getPathCliente]
+     *
+     * @param mixed $path
+     *
+     * @return [type]
+     *
+     */
+    public static function getPathCliente($path)
+    {
+        switch($path){
+            case 'perfil':
+                return 'storage/cliente/';
+            break;
+            default:
+
+            break;
+        }
+    }
+
+    public static function getPathMedico($path)
+    {
+        switch($path){
+            case 'perfil':
+                return 'storage/medico/';
+            break;
+            default:
+
+            break;
+        }
+    }
+
+    public static function getPathRecepcao($path)
+    {
+        switch($path){
+            case 'perfil':
+                return 'storage/recepcao/';
+            break;
+            default:
+
+            break;
+        }
+    }
 
     //usado em conjunto com jquery mask com formato money
     //formato ',' para deciamais '.' para centenas, milhares etc
