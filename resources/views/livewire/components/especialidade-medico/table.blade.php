@@ -48,5 +48,7 @@
             </div>
         </div>
     </div>
+
+    {{-- component modal de vinculação --}}
 </div>
 

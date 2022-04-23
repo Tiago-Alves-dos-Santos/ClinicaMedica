@@ -1,9 +1,7 @@
 <div>
 
     {{-- Stop trying to control. --}}
-    @component('components.titleSection', ['titulo' =>'Calendário'])
-
-    @endcomponent
+    <x-title-section titulo="Calendário"/>
 
     <div class="row">
         <div class="col-md-2">
@@ -23,40 +21,13 @@
                     <option value="">medico 3</option>
                   </select>
                 </div>
-              </div>
-            @component('components.cardNumber', [
-            'class' => 'blues',
-            'titulos' => 'Consultas',
-            'numero' => 45
-            ])
-            @endcomponent
+            </div>
+            <x-card-number class="blues" titulos="Consultas" numero="45"/>
+            <x-card-number class="blues" titulos="Consultas Confirmadas" numero="45"/>
+            <x-card-number class="blues" titulos="Consultas canceladas" numero="45"/>
+            <x-card-number class="blues" titulos="Consultas a Confirmar" numero="45"/>
+            <x-card-number class="blues" titulos="Consultas a Realizadas" numero="45"/>
 
-            @component('components.cardNumber', [
-            'class' => 'blues',
-            'titulos' => 'Consultas Confirmadas',
-            'numero' => 20
-            ])
-            @endcomponent
-
-            @component('components.cardNumber', [
-            'class' => 'blues',
-            'titulos' => 'Consultas canceladas',
-            'numero' => 10
-            ])
-            @endcomponent
-
-            @component('components.cardNumber', [
-            'class' => 'blues',
-            'titulos' => 'Consultas a Confirmar',
-            'numero' => 15
-            ])
-            @endcomponent
-            @component('components.cardNumber', [
-            'class' => 'blues',
-            'titulos' => 'Consultas a Realizadas',
-            'numero' => 10
-            ])
-            @endcomponent
         </div>
         <div class="col-md-10">
             {{-- Componente livewire calendar  --}}
