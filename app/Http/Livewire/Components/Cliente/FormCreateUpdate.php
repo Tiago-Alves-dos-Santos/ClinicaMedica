@@ -9,7 +9,8 @@ use App\Http\Classes\Configuracao;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+//start contantes
+new Configuracao();
 class FormCreateUpdate extends Component
 {
     use WithFileUploads;
@@ -24,7 +25,7 @@ class FormCreateUpdate extends Component
         "title" => '',
         "information" => '',
         "type" => 1,
-        "time" => Configuracao::TIME_TOAST
+        "time" => TIME_TOAST
     ];
     public $limpa = '';
     protected $listeners = [
@@ -67,17 +68,17 @@ class FormCreateUpdate extends Component
                     $cliente = $cliente->fresh();
                     if(!is_null($this->perfil_foto)){
                         Cliente::where('id', $cliente->id)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_CLIENTE."$cliente->id.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "$cliente->id.{$this->perfil_foto->extension()}"
                         ]);
-                        if (!File::exists(Configuracao::PATH_PERFIL_CLIENTE)){
-                            mkdir(Configuracao::PATH_PERFIL_CLIENTE, 0777, true);
+                        if (!File::exists(PATH_PERFIL_CLIENTE)){
+                            mkdir(PATH_PERFIL_CLIENTE, 0777, true);
                         }
 
                         // $this->perfil_foto->storeAs('recepcao',"$recepcionista->id.{$this->perfil_foto->extension()}");
 
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
-                        ->save(Configuracao::PATH_PERFIL_CLIENTE."{$cliente->id}.{$this->perfil_foto->extension()}");
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
+                        ->save(PATH_PERFIL_CLIENTE."{$cliente->id}.{$this->perfil_foto->extension()}");
                     }
                     $this->msg_toast['title'] = 'Sucesso!';
                     $this->msg_toast['information'] = 'Cadastro realizado com sucesso!';
@@ -115,15 +116,15 @@ class FormCreateUpdate extends Component
                     ]);
                     if(!is_null($this->perfil_foto) && !is_string($this->perfil_foto)){
                         Cliente::where('id', $this->id_cliente)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_CLIENTE."{$this->id_cliente}.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "{$this->id_cliente}.{$this->perfil_foto->extension()}"
                         ]);
-                        Storage::delete(Configuracao::PATH_PERFIL_CLIENTE."{$this->id_cliente}.{$this->perfil_foto->extension()}");
-                        if (!File::exists(Configuracao::PATH_PERFIL_CLIENTE)){
-                            mkdir(Configuracao::PATH_PERFIL_CLIENTE, 0777, true);
+                        Storage::delete(PATH_PERFIL_CLIENTE."{$this->id_cliente}.{$this->perfil_foto->extension()}");
+                        if (!File::exists(PATH_PERFIL_CLIENTE)){
+                            mkdir(PATH_PERFIL_CLIENTE, 0777, true);
                         }
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
-                        ->save(Configuracao::PATH_PERFIL_CLIENTE."{$this->id_cliente}.{$this->perfil_foto->extension()}");
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
+                        ->save(PATH_PERFIL_CLIENTE."{$this->id_cliente}.{$this->perfil_foto->extension()}");
 
 
                         // $this->perfil_foto->storeAs('recepcao',"{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
