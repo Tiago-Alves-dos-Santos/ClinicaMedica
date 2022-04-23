@@ -48,14 +48,5 @@
             </div>
         </div>
     </div>
-
-    {{-- component modal de vinculação --}}
-    <x-modal titulo="Vincular especialidade" id="modalVincularEspecialidade">
-        teste
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </x-modal>
 </div>
 

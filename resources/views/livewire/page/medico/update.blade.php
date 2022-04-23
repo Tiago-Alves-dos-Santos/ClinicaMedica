@@ -8,6 +8,11 @@
         </div>
     </div>
 
+    {{-- component modal de vinculação --}}
+    <x-modal titulo="Vincular especialidade" id="modalVincularEspecialidade">
+        <livewire:components.especialidade-medico.form>
+    </x-modal>
+
     <script>
         $(function(){
             Livewire.on('page.medico.update_showToast',(msg_toast) => {
