@@ -44,6 +44,7 @@ class Form extends Component
             $this->emit('especialidade-medico-reload');
             $this->emit('page.medico.update_closeModalVincularEspecialidade');
             $this->emit('showToast', $this->msg_toast);
+            $this->especialidade = [];
         }catch(\Exception $e){
             $this->msg_toast['title'] = 'Erro!';
             $this->msg_toast['information'] = $e->getMessage();
