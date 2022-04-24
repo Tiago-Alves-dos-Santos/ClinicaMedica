@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Especialidade;
+use App\Http\Classes\Configuracao as Config;
 use App\Models\EspecialidadeMedico;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,7 +43,9 @@ class EspecialidadeMedico extends Model
                 return Especialidade::whereNotIn('id', $especidades_inclusas)->get('id');
             }
             return  Especialidade::whereNotIn('id', $especidades_inclusas)->orderBy('nome')
-            ->get();
+            ->paginate(
+                Config::$LIMITE_PAGINA,['*'], 'espec_not_includes'
+            );
         }
     }
 

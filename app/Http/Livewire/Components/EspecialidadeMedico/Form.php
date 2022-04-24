@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Components\EspecialidadeMedico;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Http\Classes\Configuracao;
 use App\Models\EspecialidadeMedico;
 new Configuracao();
 class Form extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     public $id_medico = 0;
     public $especialidade = []; //recebe um array de inputs checkbox
     public $toast_type = ['success' => 0,'info' => 1,'warning' => 2,'error' => 3];
