@@ -4,7 +4,7 @@
         @csrf
         <div class="row">
             <div class="col-md-12">
-                <input type="text" class="form-control" id="search-especialidades">
+                <input type="search" class="form-control" id="search-especialidades" wire:model.lazy='search'>
             </div>
         </div>
         <div style="max-height: 1000px; overflow-y: auto; overflow-x: hidden">

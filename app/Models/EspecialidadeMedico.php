@@ -30,19 +30,21 @@ class EspecialidadeMedico extends Model
      * @return [type]
      *
      */
-    public static function especialidadesMedico($id_medico, $inclusas = true, $arr = false)
+    public static function especialidadesMedico($id_medico, $inclusas = true, $arr = false, $busca='')
     {
         $especidades_inclusas = EspecialidadeMedico::where('medico_id', $id_medico)->get('especialidade_id');
         if($inclusas){
-            if(!$arr){
+            if(!$arr){//se naõ for array
                 return Especialidade::whereIn('id', $especidades_inclusas)->orderBy('nome')->get();
             }
             return $especidades_inclusas;
         }else{
-            if($arr){
+            if($arr){//se for array
                 return Especialidade::whereNotIn('id', $especidades_inclusas)->get('id');
             }
-            return  Especialidade::whereNotIn('id', $especidades_inclusas)->orderBy('nome')
+            return  Especialidade::whereNotIn('id', $especidades_inclusas)
+            ->where('nome', 'like', "%$busca%")
+            ->orderBy('nome')
             ->paginate(
                 Config::$LIMITE_PAGINA,['*'], 'espec_not_includes'
             );

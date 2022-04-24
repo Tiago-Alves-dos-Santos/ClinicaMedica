@@ -11,8 +11,10 @@ class Form extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
     public $id_medico = 0;
     public $especialidade = []; //recebe um array de inputs checkbox
+    public $search = '';
     public $toast_type = ['success' => 0,'info' => 1,'warning' => 2,'error' => 3];
     public $msg_toast = [
         "title" => '',
@@ -53,7 +55,7 @@ class Form extends Component
     public function render()
     {
         return view('livewire.components.especialidade-medico.form',[
-            'especialidades_not_inclusas' => EspecialidadeMedico::especialidadesMedico($this->id_medico, false, false)
+            'especialidades_not_inclusas' => EspecialidadeMedico::especialidadesMedico($this->id_medico, false, false, $this->search)
         ]);
     }
 }
