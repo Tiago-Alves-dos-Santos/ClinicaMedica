@@ -34,7 +34,7 @@ class EspecialidadeMedico extends Model
         $especidades_inclusas = EspecialidadeMedico::where('medico_id', $id_medico)->get('especialidade_id');
         if($inclusas){
             if(!$arr){
-                return EspecialidadeMedico::where('medico_id', $id_medico)->orderBy('nome')->get();
+                return Especialidade::whereIn('id', $especidades_inclusas)->orderBy('nome')->get();
             }
             return $especidades_inclusas;
         }else{

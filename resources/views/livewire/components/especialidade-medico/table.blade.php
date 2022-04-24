@@ -20,9 +20,9 @@
                         <th>Ações</th>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($clientes as $value) --}}
+                        @forelse ($especialidades_inclusas as $value)
                         <tr>
-                            <td style="width: 90%">TESTE</td>
+                            <td style="width: 90%">{{$value->nome}}</td>
                             <td style="width: 10%">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle hide-icon" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,9 +40,9 @@
 
                             </td>
                         </tr>
-                        {{-- @empty
+                        @empty
 
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>

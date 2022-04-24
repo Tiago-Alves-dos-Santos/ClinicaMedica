@@ -1,11 +1,12 @@
 <div>
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-    <form action="">
+    <form wire:submit.prevent='' method="POST">
+        @csrf
         @forelse ($especialidades_not_inclusas as $value)
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{$value->id}}" id="{{$value->nome}}">
+                    <input class="form-check-input" type="checkbox" value="{{$value->id}}" id="{{$value->nome}}" wire:model.defer='especialidade'>
                     <label class="form-check-label" for="{{$value->nome}}">
                       {{$value->nome}}
                     </label>

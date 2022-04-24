@@ -9,7 +9,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-md-12">
-            <livewire:components.especialidade-medico.table>
+            <livewire:components.especialidade-medico.table :id_medico="$id">
         </div>
     </div>
 
@@ -22,6 +22,10 @@
         $(function(){
             Livewire.on('page.medico.update_showToast',(msg_toast) => {
                 showToast(msg_toast.title, msg_toast.information, msg_toast.type, msg_toast.time);
+            });
+
+            Livewire.on('page.medico.update_closeModalVincularEspecialidade',() => {
+                $('#modalVincularEspecialidade').moda('hide');
             });
         });
     </script>
