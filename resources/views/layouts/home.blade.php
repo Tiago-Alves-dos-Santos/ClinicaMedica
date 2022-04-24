@@ -4,9 +4,7 @@
 <body>
     @include('includes.sidebar')
     @include('includes.navbar')
-    @component('components.breadcumb', ['titulo' => $titulo_pagina, 'links' => ($links ?? ["0","0"])])
-            
-    @endcomponent
+    <x-breadcumb :titulo="$titulo_pagina" :links="($links)"/>
     <div class="lt-home-container container-fluid">
         @yield('body')
     </div>

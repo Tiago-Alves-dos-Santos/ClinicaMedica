@@ -5,7 +5,8 @@ namespace App\Http\Livewire\Components\Especialidade;
 use Livewire\Component;
 use App\Models\Especialidade;
 use App\Http\Classes\Configuracao;
-
+//start constantes
+new Configuracao();
 class Table extends Component
 {
     public $id_especialidade = 0;
@@ -15,7 +16,7 @@ class Table extends Component
         "title" => '',
         "information" => '',
         "type" => 1,
-        "time" => Configuracao::TIME_TOAST
+        "time" => TIME_TOAST
     ];
     public $limpa = '';
     //salvar fa-solid fa-floppy-disk

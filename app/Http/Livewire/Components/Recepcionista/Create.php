@@ -7,8 +7,10 @@ use App\Models\Recepcionista;
 use Livewire\WithFileUploads;
 use App\Http\Classes\Configuracao;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+//start contantes
+new Configuracao();
 class Create extends Component
 {
     use WithFileUploads;
@@ -33,7 +35,7 @@ class Create extends Component
         "title" => '',
         "information" => '',
         "type" => 1,
-        "time" => Configuracao::TIME_TOAST
+        "time" => TIME_TOAST
     ];
     public $limpa = '';
     protected $listeners = [
@@ -97,15 +99,15 @@ class Create extends Component
                     $recepcionista = $recepcionista->fresh();
                     if(!is_null($this->perfil_foto)){
                         Recepcionista::where('id', $recepcionista->id)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_RECEPECIONISTA."$recepcionista->id.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "$recepcionista->id.{$this->perfil_foto->extension()}"
                         ]);
                         // $this->perfil_foto->storeAs('recepcao',"$recepcionista->id.{$this->perfil_foto->extension()}");
-                        if (!File::exists(Configuracao::PATH_PERFIL_RECEPECIONISTA)){
-                            mkdir(Configuracao::PATH_PERFIL_RECEPECIONISTA, 0777, true);
+                        if (!File::exists(PATH_PERFIL_RECEPECIONISTA)){
+                            mkdir(PATH_PERFIL_RECEPECIONISTA, 0777, true);
                         }
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
-                        ->save(Configuracao::PATH_PERFIL_RECEPECIONISTA."{$recepcionista->id}.{$this->perfil_foto->extension()}");
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
+                        ->save(PATH_PERFIL_RECEPECIONISTA."{$recepcionista->id}.{$this->perfil_foto->extension()}");
                     }
                     $this->msg_toast['title'] = 'Sucesso!';
                     $this->msg_toast['information'] = 'Cadastro realizado com sucesso!';
@@ -151,15 +153,15 @@ class Create extends Component
                     ]);
                     if(!is_null($this->perfil_foto) && !is_string($this->perfil_foto)){
                         Recepcionista::where('id', $this->id_recepcionista)->update([
-                            "perfil_foto" => Configuracao::PATH_PERFIL_RECEPECIONISTA."{$this->id_recepcionista}.{$this->perfil_foto->extension()}"
+                            "perfil_foto" => "{$this->id_recepcionista}.{$this->perfil_foto->extension()}"
                         ]);
-                        Storage::delete(Configuracao::PATH_PERFIL_RECEPECIONISTA."{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
-                        if (!File::exists(Configuracao::PATH_PERFIL_RECEPECIONISTA)){
-                            mkdir(Configuracao::PATH_PERFIL_RECEPECIONISTA, 0777, true);
+                        Storage::delete(PATH_PERFIL_RECEPECIONISTA."{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
+                        if (!File::exists(PATH_PERFIL_RECEPECIONISTA)){
+                            mkdir(PATH_PERFIL_RECEPECIONISTA, 0777, true);
                         }
                         $image = Image::make($this->perfil_foto);
-                        $image->resize(Configuracao::PERFIL_WIDTH, Configuracao::PERFIL_HEIGHT)
-                        ->save(Configuracao::PATH_PERFIL_RECEPECIONISTA."{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
+                        $image->resize(PERFIL_WIDTH, PERFIL_HEIGHT)
+                        ->save(PATH_PERFIL_RECEPECIONISTA."{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
 
 
                         // $this->perfil_foto->storeAs('recepcao',"{$this->id_recepcionista}.{$this->perfil_foto->extension()}");
