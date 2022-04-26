@@ -20,6 +20,10 @@
                     <option value="">medico 2</option>
                     <option value="">medico 3</option>
                   </select>
+
+                  <a href="" class="btn btn-blue mt-2 d-block">
+                      AGENDAR
+                  </a>
                 </div>
             </div>
             <x-card-number class="blues" titulos="Consultas" numero="45"/>
