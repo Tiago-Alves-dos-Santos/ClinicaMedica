@@ -8,6 +8,9 @@ class Dashboard extends Component
 {
     public function render()
     {
-        return view('livewire.page.agendar-cliente.dashboard');
+        $links = ['Agendamento','Dashboard'];
+        return view('livewire.page.agendar-cliente.dashboard')
+        ->extends('layouts.home',['titulo_pagina' => 'Agendamentos', 'links' => $links])
+        ->section('body');
     }
 }

@@ -21,7 +21,7 @@
                     <option value="">medico 3</option>
                   </select>
 
-                  <a href="" class="btn btn-blue mt-2 d-block">
+                  <a href="{{route('view.agendamento.dashboard')}}" class="btn btn-blue mt-2 d-block">
                       AGENDAR
                   </a>
                 </div>
