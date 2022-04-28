@@ -12748,6 +12748,7 @@ fieldset:disabled .btn {
 body {
   overflow-x: hidden;
   font-family: "Rubik", sans-serif;
+  background-color: white;
 }
 
 div {
@@ -13344,6 +13345,24 @@ div.cardNumber-container.blues div.titulo {
 
 div.cardNumber-container.blues div.numero {
   background-color: #026d7e;
+}
+
+/*******************************FIELDSET*******************************/
+
+div.myFieldset {
+  width: 100%;
+  height: auto;
+  border: 0.5px solid gray;
+  padding: 20px 30px;
+}
+
+div.myFieldset .titulo {
+  position: absolute;
+  top: -20px;
+  left: 25px;
+  background-color: white;
+  padding: 5px 10px;
+  color: black;
 }
 
 /**********************LIVEIWIRE*******************************/
