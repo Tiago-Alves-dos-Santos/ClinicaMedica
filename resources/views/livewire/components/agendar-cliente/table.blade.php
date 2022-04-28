@@ -1,8 +1,16 @@
 <div>
     {{-- The Master doesn't talk, he acts. --}}
-    <a class="btn btn-primary" data-bs-toggle="collapse" href="#formBusca" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Busca Avançada
-    </a>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-dark" data-bs-toggle="collapse" href="#formBusca" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Busca Avançada
+            </a>
+            <a class="btn btn-primary" href="{{route('view.agendamento.agendar')}}">
+                <i class="fa-solid fa-plus"></i>
+                Novo Agendamento
+            </a>
+        </div>
+    </div>
     {{-- Formulario de busca avançada --}}
     <div class="row collapse mt-4" id="formBusca">
         <div class="col-md-12">
