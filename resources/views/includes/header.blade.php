@@ -27,5 +27,4 @@
 
     <script src="{{asset('js/header.js')}}"></script>
     <title>Clinica</title>
-
 </head>

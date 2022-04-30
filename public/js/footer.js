@@ -15,5 +15,7 @@ $(function(){
     Livewire.on('showToast',(msg_toast) => {
         showToast(msg_toast.title, msg_toast.information, msg_toast.type, msg_toast.time);
     });
+
+
 });
 

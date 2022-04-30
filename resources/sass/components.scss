@@ -91,3 +91,18 @@ div.cardNumber-container.blues{
         background-color: $cn-cor;
     }
 }
+/*******************************FIELDSET*******************************/
+div.myFieldset{
+    width: 100%;
+    height: auto;
+    border: 0.5px solid gray;
+    padding: 20px 30px;
+    .titulo{
+        position: absolute;
+        top: -20px;
+        left: 25px;
+        background-color:$bg-body;
+        padding: 5px 10px;
+        color:black;
+    }
+}

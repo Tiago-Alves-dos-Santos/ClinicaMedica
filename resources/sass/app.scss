@@ -1,25 +1,4 @@
-/***********************CONFIGURAÇOES BOOTSTRAP TOP****************************/
-$cor-base: rgb(70, 157, 214);
-$cor-texto: rgba(255,255,255,1);
-/*
-*$component-active-color
-*$component-active-bg
-*/
-$theme-colors: (
-  "primary":    #0d6efd,
-  "secondary":  #6c757d,
-  "success":    #198754,
-  "info":       #0dcaf0,
-  "warning":    #ffc107,
-  "danger":     #dc3545,
-  "light":      #f8f9fa,
-  "dark":       #212529,
-  "red":    #dc3545,
-  'blue': #0d6efd,
-  'pink':#d63384,
-  'sys': $cor-base
-);
-$form-check-label-cursor: pointer;
+@import "variables.scss";
 /***********************BOOTSTRAP 5.1****************************/
 @import "~bootstrap/scss/bootstrap.scss";
 /***********************IMPORTS E FONTS****************************/
@@ -30,9 +9,11 @@ $form-check-label-cursor: pointer;
     margin: 0;
     padding: 0;
 }
+
 body{
     overflow-x: hidden;
     font-family: 'Rubik', sans-serif;
+    background-color: $bg-body;
 }
 
 div{
