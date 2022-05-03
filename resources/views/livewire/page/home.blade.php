@@ -11,7 +11,7 @@
                   Buscar por médico
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Seelcione o médico</h5>
+                  <h5 class="card-title">Selecione o médico</h5>
                   {{-- <p class="card-text">Buscar consultas a partir do medico selecionado</p> --}}
                   {{-- Aq colocar componente livewire --}}
                   <select name="" id="select-medico" class="form-select">
@@ -21,9 +21,12 @@
                     <option value="3">medico 3</option>
                   </select>
 
-                  <a href="{{route('view.agendamento.dashboard')}}" class="btn btn-blue mt-2 d-block">
+                  <a href="{{route('view.agendamento.agendar', ['medico_id' => 0])}}" class="btn btn-blue mt-2 d-block" id="agendar-medico">
                       AGENDAR
                   </a>
+                  <a href="{{route('view.agendamento.dashboard')}}" class="btn btn-blue mt-2 d-block">
+                    AGENDAMENTOS
+                </a>
                 </div>
             </div>
             <x-card-number class="blues" titulos="Consultas" numero="45"/>
@@ -69,3 +72,15 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    $(function(){
+        $("#select-medico").on('change', function(){
+            let medico_id = $(this).val();
+            $("#agendar-medico").attr('href', "{{route('view.agendamento.agendar')}}"+"/"+medico_id+"/")
+
+        });
+    });
+</script>
+@endpush

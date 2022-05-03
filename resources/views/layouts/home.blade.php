@@ -9,6 +9,7 @@
         @yield('body')
     </div>
 
+    @stack('scripts')
     @include('includes.footer')
 </body>
 </html>
