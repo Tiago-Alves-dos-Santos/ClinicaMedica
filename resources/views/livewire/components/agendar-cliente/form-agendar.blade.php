@@ -10,16 +10,17 @@
                         <div class="col-md-3">
                             <label for="">Médico</label>
                             <select name="" id="" class="form-select">
-                                <option value="">Médico 1</option>
-                                <option value="">Médico 2</option>
-                                <option value="">Médico 3</option>
+                                <option value="0">Selecione</option>
+                                <option value="1">Médico 1</option>
+                                <option value="2">Médico 2</option>
+                                <option value="3">Médico 3</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label for="">
                                 Data
                             </label>
-                            <input type="datetime-local" class="form-control">
+                            <input type="datetime-local" class="form-control" wire:model.defer='data_consulta'>
                         </div>
                         <div class="col-md-3 align-self-end">
                             <button type="button" class="btn btn-purples w-100">

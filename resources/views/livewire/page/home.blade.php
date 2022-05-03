@@ -14,11 +14,11 @@
                   <h5 class="card-title">Seelcione o médico</h5>
                   {{-- <p class="card-text">Buscar consultas a partir do medico selecionado</p> --}}
                   {{-- Aq colocar componente livewire --}}
-                  <select name="" id="" class="form-select">
-                    <option value="">Todos</option>
-                    <option value="">medico 1</option>
-                    <option value="">medico 2</option>
-                    <option value="">medico 3</option>
+                  <select name="" id="select-medico" class="form-select">
+                    <option value="0">Todos</option>
+                    <option value="1">medico 1</option>
+                    <option value="2">medico 2</option>
+                    <option value="3">medico 3</option>
                   </select>
 
                   <a href="{{route('view.agendamento.dashboard')}}" class="btn btn-blue mt-2 d-block">
@@ -49,6 +49,13 @@
                         duration: { days: 1 },
                         buttonText: 'dia'
                         }
+                    },
+                    navLinks: true,
+                    navLinkDayClick: function(date, jsEvent) {
+                        let medico_id = $("#select-medico").val();
+                        let dates = date.toISOString();
+                        window.location.href = "{{route('view.agendamento.agendar')}}"+"/"+medico_id+"/"+dates;
+                        // console.log('coords', jsEvent.pageX, jsEvent.pageY);
                     },
                     initialView: 'dayGridMonth',
                     themeSystem: 'bootstrap5',
