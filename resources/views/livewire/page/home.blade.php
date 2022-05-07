@@ -15,10 +15,11 @@
                   {{-- <p class="card-text">Buscar consultas a partir do medico selecionado</p> --}}
                   {{-- Aq colocar componente livewire --}}
                   <select name="" id="select-medico" class="form-select">
-                    <option value="0">Todos</option>
-                    <option value="1">medico 1</option>
-                    <option value="2">medico 2</option>
-                    <option value="3">medico 3</option>
+                    <option value="0">Selecione</option>
+                    @forelse ($medicos as $value)
+                    <option value="{{$value->id}}">{{$value->nome}}</option>
+                    @empty
+                    @endforelse
                   </select>
 
                   <a href="{{route('view.agendamento.agendar', ['medico_id' => 0])}}" class="btn btn-blue mt-2 d-block" id="agendar-medico">
