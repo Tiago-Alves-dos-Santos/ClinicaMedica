@@ -16,4 +16,28 @@ class Agendamento extends Model
     /**Relacionamnetos */
 
     /**Outros dados */
+    public static function disponibilidadeMedico($medico_id,$datetime)
+    {
+        try {
+            $tempo_consulta = TIME_CONSULTA;
+            $datetime = new \DateTime($datetime);
+            $date = $datetime->format('Y-m-d');
+            $hora = $datetime->format('H:i:s');
+            $disponivel = true;
+            $agendamentos = Agendamento::where('medico_id', $medico_id)
+            ->whereDate('data_consulta', $date)
+            ->whereTime('data_consulta', '=', $hora)
+            ->get();
+            if(!empty($agendamentos)){
+                foreach($agendamentos as $value){
+                    if($value->status_agendamento == 'agendada' || $value->status_agendamento == 'a_confirmar'){
+                        $disponivel = false;
+                    }
+                }
+            }
+            return $disponivel;
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
 }

@@ -64,21 +64,30 @@ class FormAgendar extends Component
     {
         $this->validate();
         try {
-            Agendamento::create([
-                'medico_id' => $this->medico_id,
-                'cliente_id' => $this->cliente_id,
-                'recepcionista_id' => null,
-                'data_consulta' => $this->data_consulta,
-            ]);
-            session([
-                'msg_toast' => [
-                    'title' => 'Sucesso!',
-                    'information' => 'Consulta agendada com sucesso!',
-                    'type' => $this->toast_type['success'],
-                    'time' => TIME_TOAST
-                ]
-            ]);
-            return redirect()->route('view.agendamento.dashboard');
+            $this->medico_disponivel = Agendamento::disponibilidadeMedico($this->medico_id, $this->data_consulta);
+            if($this->medico_disponivel){
+                Agendamento::create([
+                    'medico_id' => $this->medico_id,
+                    'cliente_id' => $this->cliente_id,
+                    'recepcionista_id' => null,
+                    'data_consulta' => $this->data_consulta,
+                ]);
+                session([
+                    'msg_toast' => [
+                        'title' => 'Sucesso!',
+                        'information' => 'Consulta agendada com sucesso!',
+                        'type' => $this->toast_type['success'],
+                        'time' => TIME_TOAST
+                    ]
+                ]);
+                return redirect()->route('view.agendamento.dashboard');
+            }else{
+                $this->msg_toast['title'] = 'Atenção!';
+                $this->msg_toast['information'] = "Impossivel agendar com medico indisponivel";
+                $this->msg_toast['type'] = $this->toast_type['warning'];
+                $this->emit('showToast', $this->msg_toast);
+            }
+
         } catch (\Exception $e) {
             $this->msg_toast['title'] = 'Erro!';
             $this->msg_toast['information'] = $e->getMessage();
@@ -95,25 +104,7 @@ class FormAgendar extends Component
      */
     public function disponibilidade()
     {
-        $tempo_consulta = TIME_CONSULTA;
-        $medico_id = $this->medico_id;
-        $datetime = new \DateTime($this->data_consulta);
-        $date = $datetime->format('Y-m-d');
-        $hora = $datetime->format('H:i:s');
-        $disponivel = true;
-        $agendamentos = Agendamento::where('medico_id', $medico_id)
-        ->whereDate('data_consulta', $date)
-        ->whereTime('data_consulta', '=', $hora)
-        ->get();
-        if(!empty($agendamentos)){
-            foreach($agendamentos as $value){
-                if($value->status_agendamento == 'agendada' || $value->status_agendamento == 'a_confirmar'){
-                    $disponivel = false;
-                }
-            }
-        }
-
-        $this->medico_disponivel = $disponivel;
+        $this->medico_disponivel = Agendamento::disponibilidadeMedico($this->medico_id, $this->data_consulta);
     }
 
     public function render()
