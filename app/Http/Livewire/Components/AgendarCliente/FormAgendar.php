@@ -83,7 +83,7 @@ class FormAgendar extends Component
                 return redirect()->route('view.agendamento.dashboard');
             }else{
                 $this->msg_toast['title'] = 'Atenção!';
-                $this->msg_toast['information'] = "Impossivel agendar com medico indisponivel";
+                $this->msg_toast['information'] = "Impossível agendar com médico indisponivel";
                 $this->msg_toast['type'] = $this->toast_type['warning'];
                 $this->emit('showToast', $this->msg_toast);
             }
