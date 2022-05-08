@@ -11,9 +11,9 @@ use App\Http\Classes\Configuracao;
 new Configuracao();
 class FormAgendar extends Component
 {
-    public $medico_id = 0;
+    public $medico_id = null;
     public $data_consulta = "";
-    public $cliente_id = 0;
+    public $cliente_id = null;
     public $recepcionista_id = null;
     public $status_agendamento = null;
     public $status_agendamento_opcoes =  ['agendada', 'cancelada','confirmada','realizada','a_confirmar'];
@@ -25,10 +25,21 @@ class FormAgendar extends Component
         "time" => TIME_TOAST
     ];
     public $limpa = '';
+    protected $rules = [
+        'medico_id' => 'required|numeric',
+        'data_consulta' => 'required|date',
+        'cliente_id' => 'required|numeric'
+    ];
+    protected $messages = [
+        'medico_id.required' => 'O campo médico é obrigatório',
+        'medico_id.numeric' => 'O campo médico tem q ter valor numérico',
+        'cliente_id.required' => 'O campo paciente é obrigatório',
+        'cliente_id.numeric' => 'O campo paciente tem q ter valor numérico',
+    ];
 
     public function mount($medico_id=0,$data_consulta = "")
     {
-        $this->medico_id = $medico_id;
+        $this->medico_id = ($medico_id <= 0)?null:$medico_id;
         $this->data_consulta = substr($data_consulta, 0, 10);
         $datetime = new \DateTime($this->data_consulta);
         $datetime->setTime(date('H'), date('i'));
@@ -44,7 +55,8 @@ class FormAgendar extends Component
      */
     public function agendar()
     {
-        // try {
+        $this->validate();
+        try {
             Agendamento::create([
                 'medico_id' => $this->medico_id,
                 'cliente_id' => $this->cliente_id,
@@ -60,13 +72,25 @@ class FormAgendar extends Component
                 ]
             ]);
             return redirect()->route('view.agendamento.dashboard');
-        // } catch (\Exception $e) {
-        //     $this->msg_toast['title'] = 'Erro!';
-        //     $this->msg_toast['information'] = $e->getMessage();
-        //     $this->msg_toast['type'] = $this->toast_type['error'];
-        //     $this->emit('showToast', $this->msg_toast);
-        // }
+        } catch (\Exception $e) {
+            $this->msg_toast['title'] = 'Erro!';
+            $this->msg_toast['information'] = $e->getMessage();
+            $this->msg_toast['type'] = $this->toast_type['error'];
+            $this->emit('showToast', $this->msg_toast);
+        }
     }
+
+    /**
+     * [Description for disponibilidade]
+     *
+     * @return [type]
+     *
+     */
+    public function disponibilidade()
+    {
+        # code...
+    }
+
     public function render()
     {
         return view('livewire.components.agendar-cliente.form-agendar',[
