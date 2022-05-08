@@ -36,13 +36,17 @@
                         </div>
                         <div class="col-md-3 ">
                             <label for=""></label>
-                            <button type="button" class="btn btn-purples w-100">
+                            <button type="button" class="btn btn-purples w-100" wire:click='disponibilidade'>
                                 Disponibilidade
                             </button>
                         </div>
                         <div class="col-md-3 ">
                             <label for=""></label>
-                            <h4 style="position: relative;top: 0px; text-align: center; padding:4px 0;" class="bg-success text-white">Resultado</h4>
+                            @if (!empty($medico_disponivel) && $medico_disponivel)
+                                <h4 style="position: relative;top: 0px; text-align: center; padding:4px 0;" class="bg-success text-white">DISPONIVEL</h4>
+                            @elseif(!is_null($medico_disponivel) && !$medico_disponivel)
+                                <h4 style="position: relative;top: 0px; text-align: center; padding:4px 0;" class="bg-danger text-white">INDISPONIVEL</h4>
+                            @endif
                         </div>
                     </div>
                 </x-fieldset>

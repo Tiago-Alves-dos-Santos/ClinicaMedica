@@ -20,6 +20,8 @@ class FormAgendar extends Component
     //step de tempo de consulta
     public $datetime_step = 0;
     public $tempo_consulta = 0;
+    //varivel que verifica disponibilidade de agendar consulta
+    public $medico_disponivel = null;
     public $toast_type = ['success' => 0,'info' => 1,'warning' => 2,'error' => 3];
     public $msg_toast = [
         "title" => '',
@@ -97,15 +99,21 @@ class FormAgendar extends Component
         $medico_id = $this->medico_id;
         $datetime = new \DateTime($this->data_consulta);
         $date = $datetime->format('Y-m-d');
-
         $hora = $datetime->format('H:i:s');
-        $datetime->modify('+30 min');
-        $hora_final = $data->format('H:i:s');
-        Agendamento::where('medico_id', $medico_id)
+        $disponivel = true;
+        $agendamentos = Agendamento::where('medico_id', $medico_id)
         ->whereDate('data_consulta', $date)
-        ->whereTime('data_consulta', '=', '11:20:45')
-        ->whereTime('data_consulta', '=', '11:20:45')
+        ->whereTime('data_consulta', '=', $hora)
         ->get();
+        if(!empty($agendamentos)){
+            foreach($agendamentos as $value){
+                if($value->status_agendamento == 'agendada' || $value->status_agendamento == 'a_confirmar'){
+                    $disponivel = false;
+                }
+            }
+        }
+
+        $this->medico_disponivel = $disponivel;
     }
 
     public function render()
