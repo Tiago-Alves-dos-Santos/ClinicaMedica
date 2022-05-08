@@ -15,6 +15,8 @@ define('PATH_PERFIL_MEDICO', public_path()."/storage/medico/");
 
 //tempo de desaparecimento do toast, false = permanente
 define('TIME_TOAST',5000);
+//tempo de limite de uma consulta em minutos
+define('TIME_CONSULTA',30);
 if(PRODUCAO){
     /******pasta - arquivos storage - StoraGe(SG)******/
     define('PATH_PERFIL_CLIENTE_SG', "cliente/");

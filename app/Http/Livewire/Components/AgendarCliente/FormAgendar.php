@@ -17,6 +17,9 @@ class FormAgendar extends Component
     public $recepcionista_id = null;
     public $status_agendamento = null;
     public $status_agendamento_opcoes =  ['agendada', 'cancelada','confirmada','realizada','a_confirmar'];
+    //step de tempo de consulta
+    public $datetime_step = 0;
+    public $tempo_consulta = 0;
     public $toast_type = ['success' => 0,'info' => 1,'warning' => 2,'error' => 3];
     public $msg_toast = [
         "title" => '',
@@ -45,6 +48,8 @@ class FormAgendar extends Component
         $datetime->setTime(date('H'), date('i'));
         $this->data_consulta = $datetime->format('Y-m-d\TH:i:s');
 
+        $this->datetime_step = 60 /**equivalente aos segundos */ * TIME_CONSULTA/** tempo da consulta*/; //nesse caso step de segundos para minutos
+        $this->tempo_consulta = TIME_CONSULTA;
     }
 
     /**
@@ -82,13 +87,25 @@ class FormAgendar extends Component
 
     /**
      * [Description for disponibilidade]
-     *
+     * Verficar disponibilidade de medico, colocar media de tempo de uma consulta
      * @return [type]
      *
      */
     public function disponibilidade()
     {
-        # code...
+        $tempo_consulta = TIME_CONSULTA;
+        $medico_id = $this->medico_id;
+        $datetime = new \DateTime($this->data_consulta);
+        $date = $datetime->format('Y-m-d');
+
+        $hora = $datetime->format('H:i:s');
+        $datetime->modify('+30 min');
+        $hora_final = $data->format('H:i:s');
+        Agendamento::where('medico_id', $medico_id)
+        ->whereDate('data_consulta', $date)
+        ->whereTime('data_consulta', '=', '11:20:45')
+        ->whereTime('data_consulta', '=', '11:20:45')
+        ->get();
     }
 
     public function render()

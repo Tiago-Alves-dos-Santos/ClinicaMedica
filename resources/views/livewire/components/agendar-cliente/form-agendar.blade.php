@@ -25,9 +25,9 @@
                         </div>
                         <div class="col-md-3">
                             <label for="">
-                                Data
+                                Data - Tempo consulta: <span class="text-danger">{{$tempo_consulta}}</span> minutos
                             </label>
-                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta'>
+                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta' step="{{$datetime_step}}">
                             @error('data_consulta')
                             <div class="invalid-feedback">
                                 {{$message}}
