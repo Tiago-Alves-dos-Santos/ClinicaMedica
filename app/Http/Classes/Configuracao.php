@@ -168,4 +168,23 @@ class Configuracao
         return $year_diff;
         //echo $year_diff." ".$month_diff." ".$day_diff;
     }
+
+    /**
+     * [Description for getOpcoesStatusAgendamento]
+     * Opçoes de status agendamento de consulta
+     * @return [type]
+     *
+     */
+    public static function getOpcoesStatusAgendamento()
+    {
+        $status_agendamento_opcoes =  [
+            'agendada' => 'AGENDADA',
+             'cancelada' => 'CANCELADA',
+             'confirmada' => 'CONFIRMADA',
+             'realizada' => 'REALIZADA',
+             'a_confirmar' => 'A CONFIRMAR'
+        ];
+        sort($status_agendamento_opcoes);
+        return $status_agendamento_opcoes;
+    }
 }
