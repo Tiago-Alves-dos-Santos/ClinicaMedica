@@ -50,7 +50,7 @@ Route::get('/cliente/create',ClienteCreate::class)->name('view.clientes.create')
 Route::get('/cliente/update/{id}',ClienteUpdate::class)->name('view.clientes.update');
 //agendamento
 Route::get('/agedamento/dashboard',Agendamento::class)->name('view.agendamento.dashboard');
-Route::get('/agedamento/agendar/{medico_id?}/{recepcionista_id?}',AgendamentoAgendar::class)->name('view.agendamento.agendar');
+Route::get('/agedamento/agendar/{medico_id?}/{data?}',AgendamentoAgendar::class)->name('view.agendamento.agendar');
 // Route::get('/teste',function(){
 //     return "teste";
 // });

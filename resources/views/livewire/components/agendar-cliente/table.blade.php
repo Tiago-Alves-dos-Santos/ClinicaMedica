@@ -45,15 +45,22 @@
                         <th>Opções</th>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($clientes as $value) --}}
+                        @forelse ($agendamentos as $value)
                         <tr>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
+                            <td>{{$value->cliente_nome}}</td>
+                            <td>{{$value->medico_nome}}</td>
+                            <td>{{date('d/m/Y H:i', strtotime($value->data_consulta))}}</td>
+                            <td>{{date('d/m/Y', strtotime($value->updated_at))}}</td>
+                            <td>-</td>
                             <td>
-                                <span class="badge rounded-pill bg-success">Teste</span>
+                                @switch($value->status_agendamento)
+                                    @case('agendada')
+                                        <span class="badge rounded-pill bg-warning" data-bs-toggle="modal" data-bs-target="#md-atualizar-status-agendamento" style="cursor: pointer">AGENDADA</span>
+                                        @break
+
+                                    @default
+                                        <span class="badge rounded-pill bg-success">Teste</span>
+                                @endswitch
                             </td>
                             <td style="">
                                 <div class="dropdown">
@@ -64,13 +71,7 @@
                                         <li>
                                             <a class="dropdown-item" href="">
                                                 <i class="fa-solid fa-pen-to-square"></i>
-                                                Opção 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                                Opção 2
+                                               Reajustar agedamento
                                             </a>
                                         </li>
                                     </ul>
@@ -78,13 +79,35 @@
 
                             </td>
                         </tr>
-                        {{-- @empty
+                        @empty
 
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     {{-- FIM TABELA DE AGENDAMENTOS --}}
+    <x-modal id="md-atualizar-status-agendamento" titulo="Atualizar status">
+        <form action="" method="POST">
+            <div class="row">
+                <div class="col-md-12">
+                    <select name="" id="" class="form-select">
+                        @php
+                            $status = App\Http\Classes\Configuracao::getOpcoesStatusAgendamento();
+                        @endphp
+                        @foreach ($status as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
+                    <button class="btn btn-blue">
+                        Salvar
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </x-modal>
 </div>

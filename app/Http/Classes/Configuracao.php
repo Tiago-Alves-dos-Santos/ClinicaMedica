@@ -15,6 +15,8 @@ define('PATH_PERFIL_MEDICO', public_path()."/storage/medico/");
 
 //tempo de desaparecimento do toast, false = permanente
 define('TIME_TOAST',5000);
+//tempo de limite de uma consulta em minutos
+define('TIME_CONSULTA',30);
 if(PRODUCAO){
     /******pasta - arquivos storage - StoraGe(SG)******/
     define('PATH_PERFIL_CLIENTE_SG', "cliente/");
@@ -165,5 +167,24 @@ class Configuracao
         }
         return $year_diff;
         //echo $year_diff." ".$month_diff." ".$day_diff;
+    }
+
+    /**
+     * [Description for getOpcoesStatusAgendamento]
+     * Opçoes de status agendamento de consulta
+     * @return [type]
+     *
+     */
+    public static function getOpcoesStatusAgendamento()
+    {
+        $status_agendamento_opcoes =  [
+            'agendada' => 'AGENDADA',
+             'cancelada' => 'CANCELADA',
+             'confirmada' => 'CONFIRMADA',
+             'realizada' => 'REALIZADA',
+             'a_confirmar' => 'A CONFIRMAR'
+        ];
+        sort($status_agendamento_opcoes);
+        return $status_agendamento_opcoes;
     }
 }

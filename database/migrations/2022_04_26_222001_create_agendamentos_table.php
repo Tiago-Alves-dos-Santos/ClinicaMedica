@@ -18,8 +18,8 @@ class CreateAgendamentosTable extends Migration
             $table->bigInteger('medico_id')->unsigned()->nullable();
             $table->bigInteger('recepcionista_id')->unsigned()->nullable();
             $table->bigInteger('cliente_id')->unsigned()->nullable();
-            $table->date('data_consulta');
-            $table->enum('status_agendamento', ['agendada', 'cancelada','confirmada','realizada','a_confirmar'])->default('agendada');;
+            $table->dateTime('data_consulta');
+            $table->enum('status_agendamento', ['agendada', 'cancelada','confirmada','realizada','nao-realizada','a_confirmar'])->default('agendada');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

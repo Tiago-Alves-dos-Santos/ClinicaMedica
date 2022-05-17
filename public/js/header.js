@@ -8,7 +8,7 @@ function showToast(title,information, type_number, time){
         loaderBg: '#d63384',  // To change the background
         showHideTransition: 'slide',
         hideAfter: time, //toast some ao exibir msg, false fica ate usuario clicar
-        position: 'bottom-right'
+        position: 'top-center'
 
     })
 }

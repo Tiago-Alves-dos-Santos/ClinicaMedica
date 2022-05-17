@@ -6,6 +6,13 @@ use Livewire\Component;
 
 class FormAgendar extends Component
 {
+    public $medico_id = 0;
+    public $data_consulta = "";
+    public function mount($medico_id=0,$data="")
+    {
+        $this->medico_id = $medico_id;
+        $this->data_consulta = $data;
+    }
     public function render()
     {
         $links = ['Agendamento','Agendar'];
