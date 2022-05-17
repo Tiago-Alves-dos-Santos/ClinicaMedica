@@ -64,6 +64,25 @@
                     initialView: 'dayGridMonth',
                     themeSystem: 'bootstrap5',
                     locale: 'pt-br',
+                    events: [
+
+                        @foreach($agendamentos as $value)
+                            @php
+                                $datetime = new \DateTime($value->data_consulta);
+                                $consulta_inicio = $datetime->format("Y-m-d H:i");
+                                $datetime->modify('+30 min');
+                                $consulta_fim = $datetime->format("Y-m-d H:i");
+                            @endphp
+                            {
+                                title: "{{$value->cliente_nome." as ".date('H:i:s', strtotime($value->data_consulta))}}",
+                                start: "{{$consulta_inicio}}",
+                                end: "{{$consulta_fim}}",
+                                classNames: ['text-danger'],
+                                color:'black'
+                            },
+                        @endforeach
+
+                    ]
                   });
                   calendar.render();
                 });

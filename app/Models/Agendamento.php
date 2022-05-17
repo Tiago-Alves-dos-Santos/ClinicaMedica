@@ -16,6 +16,19 @@ class Agendamento extends Model
     /**Relacionamnetos */
 
     /**Outros dados */
+
+
+
+    /**
+     * [Description for disponibilidade]
+     * Usado na hora de agendar um consulta verficar disponibilidade de medico ou cliente
+     * @param mixed $entidade_id
+     * @param mixed $datetime
+     * @param mixed $entidade
+     *
+     * @return [type]
+     *
+     */
     public static function disponibilidade($entidade_id,$datetime, $entidade)
     {
         $tempo_consulta = TIME_CONSULTA;
