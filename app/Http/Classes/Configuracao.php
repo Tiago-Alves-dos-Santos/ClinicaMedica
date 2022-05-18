@@ -179,12 +179,13 @@ class Configuracao
     {
         $status_agendamento_opcoes =  [
             'agendada' => 'AGENDADA',
-             'cancelada' => 'CANCELADA',
-             'confirmada' => 'CONFIRMADA',
-             'realizada' => 'REALIZADA',
-             'a_confirmar' => 'A CONFIRMAR'
+            'cancelada' => 'CANCELADA',
+            'confirmada' => 'CONFIRMADA',
+            'realizada' => 'REALIZADA',
+            'a_confirmar' => 'A CONFIRMAR',
+            'nao-realizada' => 'NÃO REALIZADA'
         ];
-        sort($status_agendamento_opcoes);
+        asort($status_agendamento_opcoes);
         return $status_agendamento_opcoes;
     }
 }

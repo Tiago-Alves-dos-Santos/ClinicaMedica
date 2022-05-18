@@ -55,7 +55,22 @@
                             <td>
                                 @switch($value->status_agendamento)
                                     @case('agendada')
-                                        <span class="badge rounded-pill bg-warning" data-bs-toggle="modal" data-bs-target="#md-atualizar-status-agendamento" style="cursor: pointer">AGENDADA</span>
+                                        <span class="badge rounded-pill bg-info" style="cursor: pointer" wire:click='openModalEditStatus({{$value->agedamento_id}})'>AGENDADA</span>
+                                        @break
+                                    @case('a_confirmar')
+                                        <span class="badge rounded-pill bg-warning" style="cursor: pointer" wire:click='openModalEditStatus({{$value->agedamento_id}})'>A CONFIRMAR</span>
+                                        @break
+                                    @case('cancelada')
+                                        <span class="badge rounded-pill bg-danger">CANCELADA</span>
+                                        @break
+                                    @case('confirmada')
+                                        <span class="badge rounded-pill bg-success" style="cursor: pointer" wire:click='openModalEditStatus({{$value->agedamento_id}})'>CONFIRMADA</span>
+                                        @break
+                                    @case('realizada')
+                                        <span class="badge rounded-pill bg-success">REALIZADA</span>
+                                        @break
+                                    @case('nao-realizada')
+                                        <span class="badge rounded-pill bg-danger">NÃO REALIZADA</span>
                                         @break
 
                                     @default
@@ -89,25 +104,58 @@
     </div>
     {{-- FIM TABELA DE AGENDAMENTOS --}}
     <x-modal id="md-atualizar-status-agendamento" titulo="Atualizar status">
-        <form action="" method="POST">
+        <form wire:submit.prevent='showQuestionYesNo' method="POST">
             <div class="row">
                 <div class="col-md-12">
-                    <select name="" id="" class="form-select">
+                    <select name="" id="" class="form-select" wire:model.defer='status_agendamento'>
                         @php
                             $status = App\Http\Classes\Configuracao::getOpcoesStatusAgendamento();
                         @endphp
                         @foreach ($status as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
+                            @if ($status_agendamento == 'a_confirmar' && $key != 'agendada')
+                                <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
+                            @elseif($status_agendamento == 'confirmada' && ($key != 'agendada' && $key != 'a_confirmar'))
+                                <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
+                            @elseif($status_agendamento == 'agendada')
+                                <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
+                            @endif
+
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
-                    <button class="btn btn-blue">
+                    <button type="submit" class="btn btn-blue">
                         Salvar
+                        <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading>
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </button>
                 </div>
             </div>
 
         </form>
     </x-modal>
+    @push('scripts')
+        <script>
+            $(function(){
+                // showQuestionYesNo('Atenção!!!','teste', ())
+                var myModal = new bootstrap.Modal(document.getElementById('md-atualizar-status-agendamento'), {
+                    //keyboard: false
+                })
+                Livewire.on('components.agendar-cliente.table_openModal', () => {
+                    myModal.show();
+                });
+                Livewire.on('components.agendar-cliente.table_closeModal', () => {
+                    myModal.hide();
+                });
+
+                Livewire.on('components.agendar-cliente.table_showQuestionYesNo', (question_data) => {
+                    function editStatus(){
+                        Livewire.emit('editStatus');
+                    }
+                    showQuestionYesNo('Atenção!!!',question_data, editStatus)
+                });
+            });
+        </script>
+    @endpush
 </div>
