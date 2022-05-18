@@ -38,6 +38,10 @@
                             <label for=""></label>
                             <button type="button" class="btn btn-purples w-100" wire:click='disponibilidade'>
                                 Disponibilidade
+
+                                <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='disponibilidade'>
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </button>
                         </div>
                         <div class="col-md-3 ">
@@ -79,7 +83,7 @@
                     <div class="col-md-12 d-flex justify-content-end">
                         <button type="submit" class="btn btn-lg btn-blue">
                             Salvar
-                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading>
+                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='agendar'>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </button>
