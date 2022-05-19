@@ -42,6 +42,7 @@
                         <th>Agendado dia</th>
                         <th>Agendado por</th>
                         <th>Status agendamento</th>
+                        <th>Motivo</th>
                         <th>Opções</th>
                     </thead>
                     <tbody>
@@ -77,9 +78,18 @@
                                         <span class="badge rounded-pill bg-success">Teste</span>
                                 @endswitch
                             </td>
+                            <td>
+                                @if (empty($value->motivo))
+                                    <span>-</span>
+                                @elseif(strlen($value->motivo) > 30)
+                                    <span data-title="{{$value->motivo}}">{{Str::limit($value->motivo, 30)}}</span>
+                                @else
+                                    <span>{{$value->motivo}}</span>
+                                @endif
+                            </td>
                             <td style="">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle hide-icon" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn dropdown-toggle hide-icon" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" @if($value->status_agendamento != 'agendada' && $value->status_agendamento != 'a_confirmar') disabled @endif>
                                         <img src="{{asset('img/more_options.png')}}" class="img-fluid" alt="Opções" style="width: 17px; height: 20px;">
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -103,11 +113,13 @@
         </div>
     </div>
     {{-- FIM TABELA DE AGENDAMENTOS --}}
+
+    {{-- Modal de alteração de status --}}
     <x-modal id="md-atualizar-status-agendamento" titulo="Atualizar status">
         <form wire:submit.prevent='showQuestionYesNo' method="POST">
             <div class="row">
                 <div class="col-md-12">
-                    <select name="" id="" class="form-select" wire:model.defer='status_agendamento'>
+                    <select name="" id="select-status" class="form-select" wire:model.defer='status_agendamento'>
                         @php
                             $status = App\Http\Classes\Configuracao::getOpcoesStatusAgendamento();
                         @endphp
@@ -123,6 +135,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col-md-12" >
+                    <label for="">Motivo</label>
+                    <input type="text" id="motivo" class="form-control" wire:model.defer='motivo' @if ($status_agendamento == 'cancelada' || $status_agendamento == 'nao-realizada') @else readonly @endif maxlength="255">
+                </div>
                 <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
                     <button type="submit" class="btn btn-blue">
                         Salvar
@@ -135,12 +151,29 @@
 
         </form>
     </x-modal>
+    {{-- Modal de alteração de status --}}
     @push('scripts')
         <script>
             $(function(){
+                toogleMotivoInput = function(){
+                    $("#select-status").on('change', function(){
+                        let value = $(this).val();
+                        if(value == 'cancelada' || value == 'nao-realizada'){
+                            $("#motivo").val("");
+                            $("#motivo").removeAttr('readonly');
+                            $("#motivo").prop('required', true);
+                        }else{
+                            $("#motivo").val("");
+                            $("#motivo").prop('readonly', true);
+                            $("#motivo").removeAttr('required');
+                        }
+                    });
+                }
+
+                toogleMotivoInput();
                 // showQuestionYesNo('Atenção!!!','teste', ())
                 var myModal = new bootstrap.Modal(document.getElementById('md-atualizar-status-agendamento'), {
-                    //keyboard: false
+                    keyboard: false
                 })
                 Livewire.on('components.agendar-cliente.table_openModal', () => {
                     myModal.show();

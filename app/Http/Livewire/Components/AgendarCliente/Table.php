@@ -10,6 +10,8 @@ class Table extends Component
 {
     public $agendamento_id = 0;
     public $status_agendamento = "";
+    public $motivo = "";
+    public $limpa = "";
     public $toast_type = ['success' => 0,'info' => 1,'warning' => 2,'error' => 3];
     public $msg_toast = [
         "title" => '',
@@ -34,6 +36,9 @@ class Table extends Component
             $this->agendamento_id = $agendamento_id;
             $agedamento = Agendamento::find($agendamento_id);
             $this->status_agendamento = $agedamento->status_agendamento;
+            if($this->status_agendamento != 'cancelada' || $this->status_agendamento != 'nao-realizada'){
+                $this->motivo = "";
+            }
             $this->emit('components.agendar-cliente.table_openModal');
         } catch (\Exception $e) {
             $this->msg_toast['title'] = 'Erro!';
@@ -62,8 +67,10 @@ class Table extends Component
         # code...
         try {
             Agendamento::where('id', $this->agendamento_id)->update([
-                'status_agendamento' => $this->status_agendamento
+                'status_agendamento' => $this->status_agendamento,
+                'motivo' => mb_strtoupper($this->motivo)
             ]);
+            $this->resetExcept($this->limpa);
             $this->emit('agendamentos-reload');
             $this->emit('components.agendar-cliente.table_closeModal');
         } catch (\Exception $e) {

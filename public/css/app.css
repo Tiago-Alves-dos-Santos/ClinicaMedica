@@ -13104,6 +13104,34 @@ table.table-hoverEffect-dark tr.active td {
   background-color: #212529;
 }
 
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+  height: auto;
+}
+
+[data-title]:after {
+  content: attr(data-title);
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  height: auto;
+  padding: 10px;
+  background-color: #181818;
+  color: #fff6f6;
+  font-size: 13px;
+}
+
+[data-title] {
+  position: relative;
+}
+
 /**********************LAYOUTS*******************************/
 
 /**********************LAYOUTS.CENTRAL*********************/

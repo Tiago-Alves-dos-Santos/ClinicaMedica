@@ -1,3 +1,4 @@
+/****************************************FUNÇÕES********************************************************/
 function showToast(title,information, type_number, time){
     type = ['success','info','warning','error'];
     $.toast({
