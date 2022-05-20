@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAgendamentosTable extends Migration
+class CreateClienteConsultasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,22 @@ class CreateAgendamentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('agendamento_cliente', function (Blueprint $table) {
+        Schema::create('cliente_consultar', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('medico_id')->unsigned()->nullable();
-            $table->bigInteger('recepcionista_id')->unsigned()->nullable();
             $table->bigInteger('cliente_id')->unsigned()->nullable();
-            $table->dateTime('data_consulta');
-            $table->enum('status_agendamento', ['agendada', 'cancelada','confirmada','realizada','nao-realizada','a_confirmar'])->default('agendada');
-            $table->string('motivo', 255)->nullable();
+            $table->bigInteger('agendamento_id')->unsigned()->nullable();
+            $table->double('valor', 15, 2)->nullable();
+            $table->dateTime('data_consulta')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_final')->nullable();
+            $table->enum('status', ['iniciada', 'realizada','aguardando'])->default('aguardando');
             $table->timestamps();
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->softDeletes($column = 'deleted_at');
             /**chaves estrangeiras */
             $table->foreign('medico_id')->references('id')->on('medicos');
-            $table->foreign('recepcionista_id')->references('id')->on('recepcionistas');
             $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('agendamento_id')->references('id')->on('agendamento_cliente');
         });
     }
 
@@ -37,6 +39,6 @@ class CreateAgendamentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agendamento_cliente');
+        Schema::dropIfExists('cliente_consultar');
     }
 }
