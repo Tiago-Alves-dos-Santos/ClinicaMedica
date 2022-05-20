@@ -86,7 +86,7 @@ class Table extends Component
         return view('livewire.components.agendar-cliente.table', [
             'agendamentos' => Agendamento::JOIN("clientes", "clientes.id","=","agendamento_cliente.cliente_id")
             ->JOIN("medicos", "medicos.id","=","agendamento_cliente.medico_id")
-            ->select('*','agendamento_cliente.id as agedamento_id','medicos.nome as medico_nome','clientes.nome as cliente_nome')->paginate(Configuracao::$LIMITE_PAGINA)
+            ->select('agendamento_cliente.*','agendamento_cliente.id as agedamento_id','medicos.nome as medico_nome','clientes.nome as cliente_nome')->paginate(Configuracao::$LIMITE_PAGINA)
         ]);
     }
 }

@@ -68,12 +68,12 @@ class FormAgendarEdit extends Component
     {
         $this->validate();
         try {
-            $retorno = json_decode(Agendamento::disponibilidade($this->medico_id, $this->data_consulta, 'medico'));
+            $retorno = json_decode(Agendamento::disponibilidade($this->medico_id, $this->data_consulta, 'medico','update',$this->agendamento->id));
             $this->medico_disponivel = $retorno->disponibilidade;
-            $retorno = json_decode(Agendamento::disponibilidade($this->cliente_id, $this->data_consulta, 'cliente'));
+            $retorno = json_decode(Agendamento::disponibilidade($this->cliente_id, $this->data_consulta, 'cliente','update',$this->agendamento->id));
             $this->cliente_disponivel = $retorno->disponibilidade;
             if($this->medico_disponivel && $this->cliente_disponivel){
-                Agendamento::create([
+                Agendamento::where('id', $this->agendamento->id)->update([
                     'medico_id' => $this->medico_id,
                     'cliente_id' => $this->cliente_id,
                     'recepcionista_id' => null,
@@ -82,7 +82,7 @@ class FormAgendarEdit extends Component
                 session([
                     'msg_toast' => [
                         'title' => 'Sucesso!',
-                        'information' => 'Consulta agendada com sucesso!',
+                        'information' => 'Consulta ajustada com sucesso!',
                         'type' => $this->toast_type['success'],
                         'time' => TIME_TOAST
                     ]
@@ -118,7 +118,7 @@ class FormAgendarEdit extends Component
     {
         try {
             if(!empty($this->medico_id)){
-                $retorno = json_decode(Agendamento::disponibilidade($this->medico_id, $this->data_consulta, 'medico'));
+                $retorno = json_decode(Agendamento::disponibilidade($this->medico_id, $this->data_consulta, 'medico','update',$this->agendamento->id));
                 $this->medico_disponivel = $retorno->disponibilidade;
             }else{
                 $this->msg_toast['title'] = 'Atenção!';
