@@ -94,7 +94,9 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li>
-                                            <a class="dropdown-item" href="">
+                                            <a class="dropdown-item" href="{{route('view.agendamento.editar', [
+                                                'agendamento_id' => $value->agedamento_id
+                                            ])}}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                Reajustar agedamento
                                             </a>
