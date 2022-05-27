@@ -128,7 +128,7 @@
                         @foreach ($status as $key => $value)
                             @if ($status_agendamento == 'a_confirmar' && $key != 'agendada')
                                 <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
-                            @elseif($status_agendamento == 'confirmada' && ($key != 'agendada' && $key != 'a_confirmar'))
+                            @elseif($status_agendamento == 'confirmada' && ($key == 'cancelada' || $key == 'confirmada'))
                                 <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
                             @elseif($status_agendamento == 'agendada')
                                 <option value="{{$key}}" @if($status_agendamento == $key) selected @endif>{{$value}}</option>
