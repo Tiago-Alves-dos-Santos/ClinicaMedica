@@ -40,6 +40,7 @@ table.table-default{
     width: 100%;
     th{
         border-bottom: 2px solid black;
+        text-transform: uppercase;
     }
     tr{
         border-bottom: 0.2px solid gray;
@@ -53,6 +54,7 @@ table.table-hoverEffect-dark{
     width: 100%;
     th{
         border-bottom: 2px solid black;
+        text-transform: uppercase;
     }
     tr{
         border-bottom: 0.2px solid gray;

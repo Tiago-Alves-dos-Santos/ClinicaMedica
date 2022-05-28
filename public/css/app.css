@@ -13062,6 +13062,7 @@ table.table-default {
 
 table.table-default th {
   border-bottom: 2px solid black;
+  text-transform: uppercase;
 }
 
 table.table-default tr {
@@ -13078,6 +13079,7 @@ table.table-hoverEffect-dark {
 
 table.table-hoverEffect-dark th {
   border-bottom: 2px solid black;
+  text-transform: uppercase;
 }
 
 table.table-hoverEffect-dark tr {
