@@ -32,12 +32,6 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li>
-                                            <a class="dropdown-item" href="">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                                Editar
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a class="dropdown-item" href="#">
                                                 <i class="fa-solid fa-trash-can"></i>
                                                 Deletar
