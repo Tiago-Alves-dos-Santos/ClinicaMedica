@@ -22,7 +22,8 @@ class CreateClienteConsultasTable extends Migration
             $table->dateTime('data_consulta')->nullable();
             $table->time('hora_inicio')->nullable();
             $table->time('hora_final')->nullable();
-            $table->enum('status', ['iniciada', 'realizada','aguardando'])->default('aguardando');
+            $table->enum('status', ['iniciada', 'realizada','nao-realizada','aguardando'])->default('aguardando');
+            $table->string('motivo', 255)->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at');
             /**chaves estrangeiras */

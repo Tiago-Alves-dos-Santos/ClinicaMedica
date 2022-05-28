@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <form wire:submit.prevent='reAgendar' method="post">
                 @csrf
-                <x-fieldset titulo='Dados médico'>
+                <x-fieldset titulo='Dados médico' style="margin-top: 30px">
                     <div class="row">
                         <div class="col-md-3">
                             <label for="">Médico</label>

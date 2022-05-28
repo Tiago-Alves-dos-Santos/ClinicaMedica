@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Components\AgendarCliente;
 
 use Livewire\Component;
 use App\Models\Agendamento;
+use App\Models\ClienteConsulta;
 use App\Http\Classes\Configuracao;
 new Configuracao();
 class Table extends Component
@@ -70,6 +71,19 @@ class Table extends Component
                 'status_agendamento' => $this->status_agendamento,
                 'motivo' => mb_strtoupper($this->motivo)
             ]);
+            if($this->status_agendamento == 'confirmada'){
+                $agendamento = Agendamento::find($this->agendamento_id);
+                ClienteConsulta::create([
+                    'medico_id' => $agendamento->medico_id,
+                    'cliente_id' => $agendamento->cliente_id,
+                    'agendamento_id' => $agendamento->id,
+                    'data_consulta' => $agendamento->data_consulta,
+                ]);
+                $this->msg_toast['title'] = 'Consulta criada!';
+                $this->msg_toast['information'] = "Consulta gerada a partir de agendamento confirmado!";
+                $this->msg_toast['type'] = $this->toast_type['info'];
+                $this->emit('showToast', $this->msg_toast);
+            }
             $this->resetExcept($this->limpa);
             $this->emit('agendamentos-reload');
             $this->emit('components.agendar-cliente.table_closeModal');
@@ -86,7 +100,8 @@ class Table extends Component
         return view('livewire.components.agendar-cliente.table', [
             'agendamentos' => Agendamento::JOIN("clientes", "clientes.id","=","agendamento_cliente.cliente_id")
             ->JOIN("medicos", "medicos.id","=","agendamento_cliente.medico_id")
-            ->select('agendamento_cliente.*','agendamento_cliente.id as agedamento_id','medicos.nome as medico_nome','clientes.nome as cliente_nome')->paginate(Configuracao::$LIMITE_PAGINA)
+            ->select('agendamento_cliente.*','agendamento_cliente.id as agedamento_id','medicos.nome as medico_nome','clientes.nome as cliente_nome')
+            ->paginate(Configuracao::$LIMITE_PAGINA)
         ]);
     }
 }

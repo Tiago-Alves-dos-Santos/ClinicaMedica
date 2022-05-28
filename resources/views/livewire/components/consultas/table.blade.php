@@ -14,12 +14,31 @@
                         <th>Ações</th>
                     </thead>
                     <tbody>
+                        @forelse ($consultas as $value)
                         <tr>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
-                            <td>teste</td>
+                            <td>{{$value->medico_nome}}</td>
+                            <td>{{$value->cliente_nome}}</td>
+                            <td>{{date('d/m/Y H:i', strtotime($value->data_consulta))}}</td>
+                            <td>00:00</td>
+                            <td>
+                                @switch($value->status)
+                                    @case('iniciada')
+                                        <span class="badge rounded-pill bg-warning" style="cursor: pointer">INICIADA</span>
+                                        @break
+                                    @case('aguardando')
+                                        <span class="badge rounded-pill bg-info" style="cursor: pointer">AGUARDANDO</span>
+                                        @break
+                                    @case('realizada')
+                                        <span class="badge rounded-pill bg-success">REALIZADA</span>
+                                        @break
+                                    @case('nao-realizada')
+                                        <span class="badge rounded-pill bg-danger">NÃO REALIZADA</span>
+                                        @break
+
+                                    @default
+                                        <span class="badge rounded-pill bg-success">Teste</span>
+                                @endswitch
+                            </td>
                             <td>
                                 <a href="" class="btn btn-success">
                                     INICIAR
@@ -33,13 +52,13 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li>
                                             <a class="dropdown-item" href="#">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                                Deletar
+                                                <i class="fa-solid fa-clipboard-user"></i>
+                                                Ver consulta
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                                <i class="fa-solid fa-calendar-days"></i>
                                                 Ver agendamento
                                             </a>
                                         </li>
@@ -48,6 +67,10 @@
 
                             </td>
                         </tr>
+                        @empty
+
+                        @endforelse
+
                     </tbody>
                 </table>
             </div>
