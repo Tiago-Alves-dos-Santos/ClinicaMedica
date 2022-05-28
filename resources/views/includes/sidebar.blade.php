@@ -162,6 +162,52 @@
         {{-- Fim link catergoria --}}
     </div>
     {{-- Fim Links sidebar --}}
+
+
+    {{-- Links sidebar --}}
+    <div class="container-links">
+        {{-- link catergoria --}}
+        <div class="link-dpDown" id="categoria-inicio">
+            <div class="link-hover">
+                <div class="icone">
+                    <i class="fa-regular fa-calendar"></i>
+                </div>
+                <div class="nome">
+                    Agendamentos/Consultas
+                </div>
+                <div class="seta">
+                    <i class="fa-solid fa-caret-right"></i>
+                </div>
+            </div>
+
+            {{-- SUblinks --}}
+            <div class="container-sublinks">
+                {{-- SubLink link  --}}
+                <a href="{{route('view.agendamento.dashboard')}}">
+                    <div class="link-icone">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div class="link-nome">
+                        Agendamentos
+                    </div>
+                </a>
+                {{-- SubLink link  --}}
+                {{-- SubLink link  --}}
+                <a href="{{route('view.consultas.dashboard')}}">
+                    <div class="link-icone">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="link-nome">
+                        Consultas
+                    </div>
+                </a>
+                {{-- SubLink link  --}}
+            </div>
+            {{-- FIm SUblinks --}}
+        </div>
+        {{-- Fim link catergoria --}}
+    </div>
+    {{-- Fim Links sidebar --}}
 </div>
 
 <script>

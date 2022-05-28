@@ -5,12 +5,12 @@ use App\Http\Livewire\Page\Login;
 use Illuminate\Support\Facades\Route;
 /**Clietne */
 
+use App\Http\Livewire\Page\Consultas\Dashboard as ConsultaDashboard;
 use App\Http\Livewire\Page\Medico\Dashboard as Medico;
-use App\Http\Livewire\Page\Cliente\Dashboard as Cliente;
 /**Medico */
+use App\Http\Livewire\Page\Cliente\Dashboard as Cliente;
 use App\Http\Livewire\Page\Medico\Create as MedicoCreate;
 use App\Http\Livewire\Page\Medico\Update as MedicoUpdate;
-use App\Http\Livewire\Page\AgendarCliente\FormAgendarEdit as AgendamentoEditar;
 
 /**Recepcionista */
 use App\Http\Livewire\Page\Cliente\Create as ClienteCreate;
@@ -22,6 +22,7 @@ use App\Http\Livewire\Page\Recepcionista\Dashboard as Recepcionista;
 use App\Http\Livewire\Page\Recepcionista\Create as RecepcionistaCreate;
 use App\Http\Livewire\Page\Recepcionista\Update as RecepcionistaUpdate;
 use App\Http\Livewire\Page\AgendarCliente\FormAgendar as AgendamentoAgendar;
+use App\Http\Livewire\Page\AgendarCliente\FormAgendarEdit as AgendamentoEditar;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +54,9 @@ Route::get('/cliente/update/{id}',ClienteUpdate::class)->name('view.clientes.upd
 Route::get('/agedamento/dashboard',Agendamento::class)->name('view.agendamento.dashboard');
 Route::get('/agedamento/agendar/{medico_id?}/{data?}',AgendamentoAgendar::class)->name('view.agendamento.agendar');
 Route::get('/agedamento/editar/{agendamento_id}',AgendamentoEditar::class)->name('view.agendamento.editar');
+
+//consultas
+Route::get('/consultas/dashboard', ConsultaDashboard::class)->name('view.consultas.dashboard');
 // Route::get('/teste',function(){
 //     return "teste";
 // });
