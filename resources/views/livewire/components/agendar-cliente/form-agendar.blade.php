@@ -27,7 +27,7 @@
                             <label for="">
                                 Data - Tempo consulta: <span class="text-danger">{{$tempo_consulta}}</span> minutos
                             </label>
-                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta' step="{{$datetime_step}}">
+                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta' step="{{$datetime_step}}" min="{{date('Y-m-d\TH:i', ceil(time() / $datetime_step) * $datetime_step)}}">
                             @error('data_consulta')
                             <div class="invalid-feedback">
                                 {{$message}}

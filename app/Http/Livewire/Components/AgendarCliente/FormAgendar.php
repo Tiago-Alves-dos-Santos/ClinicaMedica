@@ -70,11 +70,20 @@ class FormAgendar extends Component
             $retorno = json_decode(Agendamento::disponibilidade($this->cliente_id, $this->data_consulta, 'cliente'));
             $this->cliente_disponivel = $retorno->disponibilidade;
             if($this->medico_disponivel && $this->cliente_disponivel){
+                $status = "agendada";
+                $datetime_consulta = new \DateTime($this->data_consulta);
+                $datetime = new \DateTime();
+                if(strtotime($datetime_consulta->format('Y-m-d')) == strtotime($datetime->format('Y-m-d')))
+                {
+                    $status = "a_confirmar";
+                }
+
                 Agendamento::create([
                     'medico_id' => $this->medico_id,
                     'cliente_id' => $this->cliente_id,
                     'recepcionista_id' => null,
                     'data_consulta' => $this->data_consulta,
+                    'status_agendamento' => $status
                 ]);
                 session([
                     'msg_toast' => [

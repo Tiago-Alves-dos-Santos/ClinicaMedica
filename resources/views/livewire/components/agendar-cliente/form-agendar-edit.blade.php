@@ -26,7 +26,7 @@
                             <label for="">
                                 Data - Tempo consulta: <span class="text-danger">{{$tempo_consulta}}</span> minutos
                             </label>
-                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta' step="{{$datetime_step}}">
+                            <input type="datetime-local" min="{{date('Y-m-d\TH:i', ceil(time() / $datetime_step) * $datetime_step)}}" step="{{$datetime_step}}" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta'  >
                             @error('data_consulta')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -82,7 +82,7 @@
                     <div class="col-md-12 d-flex justify-content-end">
                         <button type="submit" class="btn btn-lg btn-blue">
                             Salvar
-                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='agendar'>
+                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='reAgendar'>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </button>
