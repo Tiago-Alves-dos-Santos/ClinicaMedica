@@ -40,7 +40,7 @@
                                 @endswitch
                             </td>
                             <td>
-                                <a href="" class="btn btn-success">
+                                <a href="{{route('view.consultas.atendimento')}}" class="btn btn-success">
                                     INICIAR
                                 </a>
                             </td>
