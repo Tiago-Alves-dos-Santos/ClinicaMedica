@@ -74,7 +74,7 @@
                                 $consulta_fim = $datetime->format("Y-m-d H:i");
                             @endphp
                             {
-                                title: "{{$value->cliente_nome." as ".date('H:i:s', strtotime($value->data_consulta))}}",
+                                title: "{{$value->cliente_nome}} as {{date('H:i:s', strtotime($value->data_consulta))}}",
                                 start: "{{$consulta_inicio}}",
                                 end: "{{$consulta_fim}}",
                                 classNames: ['text-danger'],

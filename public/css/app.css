@@ -13062,6 +13062,7 @@ table.table-default {
 
 table.table-default th {
   border-bottom: 2px solid black;
+  text-transform: uppercase;
 }
 
 table.table-default tr {
@@ -13078,6 +13079,7 @@ table.table-hoverEffect-dark {
 
 table.table-hoverEffect-dark th {
   border-bottom: 2px solid black;
+  text-transform: uppercase;
 }
 
 table.table-hoverEffect-dark tr {
@@ -13102,6 +13104,34 @@ table.table-hoverEffect-dark tr.active td {
   padding: 5px 0px 5px 0px;
   color: white;
   background-color: #212529;
+}
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+  height: auto;
+}
+
+[data-title]:after {
+  content: attr(data-title);
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  height: auto;
+  padding: 10px;
+  background-color: #181818;
+  color: #fff6f6;
+  font-size: 13px;
+}
+
+[data-title] {
+  position: relative;
 }
 
 /**********************LAYOUTS*******************************/

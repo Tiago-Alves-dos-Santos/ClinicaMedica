@@ -1,18 +1,17 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-
     <div class="row">
         <div class="col-md-12">
-            <form wire:submit.prevent='agendar' method="post">
+            <form wire:submit.prevent='reAgendar' method="post">
                 @csrf
-                <x-fieldset titulo='Dados médico'>
+                <x-fieldset titulo='Dados médico' style="margin-top: 30px">
                     <div class="row">
                         <div class="col-md-3">
                             <label for="">Médico</label>
                             <select name="" id="" class="form-select @error('medico_id') is-invalid @enderror" wire:model.defer='medico_id'>
                                 <option value="">Selecione</option>
                                 @forelse ($medicos as $value)
-                                <option value="{{$value->id}}" @if((int)$medico_id === $value->id) selected @endif>{{$value->nome}}</option>
+                                <option value="{{$value->id}}" >{{$value->nome}}</option>
                                 @empty
 
                                 @endforelse
@@ -27,7 +26,7 @@
                             <label for="">
                                 Data - Tempo consulta: <span class="text-danger">{{$tempo_consulta}}</span> minutos
                             </label>
-                            <input type="datetime-local" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta' step="{{$datetime_step}}" min="{{date('Y-m-d\TH:i', ceil(time() / $datetime_step) * $datetime_step)}}">
+                            <input type="datetime-local" min="{{date('Y-m-d\TH:i', ceil(time() / $datetime_step) * $datetime_step)}}" step="{{$datetime_step}}" class="form-control @error('data_consulta') is-invalid @enderror" wire:model.defer='data_consulta'  >
                             @error('data_consulta')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -61,7 +60,7 @@
                             <select name="" id="" class="form-select @error('cliente_id') is-invalid @enderror" wire:model.defer='cliente_id'>
                                 <option value="">Selecione</option>
                                 @forelse ($clientes as $value)
-                                <option value="{{$value->id}}">{{$value->nome}}</option>
+                                <option value="{{$value->id}}" @if($agendamento->cliente_id == $value->id) selected @endif>{{$value->nome}}</option>
                                 @empty
 
                                 @endforelse
@@ -74,8 +73,8 @@
                         </div>
 
                         <div class="col-md-6 col-xxl-4">
-                            <label for="">Status Consulta</label>
-                            <input type="text" class="form-control" value="AGENDADA" readonly>
+                            <label for="">Status Agendamento</label>
+                            <input type="text" class="form-control" readonly wire:model.defer='status_agendamento'>
                         </div>
                     </div>
                 </x-fieldset>
@@ -83,7 +82,7 @@
                     <div class="col-md-12 d-flex justify-content-end">
                         <button type="submit" class="btn btn-lg btn-blue">
                             Salvar
-                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='agendar'>
+                            <div class="spinner-border text-warning spinner-border-sm" role="status" wire:loading wire:target='reAgendar'>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </button>

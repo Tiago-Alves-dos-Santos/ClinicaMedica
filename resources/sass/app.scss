@@ -40,6 +40,7 @@ table.table-default{
     width: 100%;
     th{
         border-bottom: 2px solid black;
+        text-transform: uppercase;
     }
     tr{
         border-bottom: 0.2px solid gray;
@@ -53,6 +54,7 @@ table.table-hoverEffect-dark{
     width: 100%;
     th{
         border-bottom: 2px solid black;
+        text-transform: uppercase;
     }
     tr{
         border-bottom: 0.2px solid gray;
@@ -73,6 +75,34 @@ table.table-hoverEffect-dark{
             background-color: #212529;
         }
     }
+}
+
+//tooltip de titulo feito manualmente
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+    height: auto;
+}
+[data-title]:after {
+    content: attr(data-title);
+    position: absolute;
+    left: 0;
+    top:0;
+    box-sizing:border-box;
+    white-space: normal;
+    z-index: 99999;
+    visibility: hidden;
+    opacity: 0;
+    height: auto;
+    padding: 10px;
+    background-color: rgb(24, 24, 24);
+    color: rgb(255, 246, 246);
+    font-size: 13px;
+}
+[data-title] {
+    position: relative;
+
 }
 /**********************LAYOUTS*******************************/
 @import "layouts.scss";

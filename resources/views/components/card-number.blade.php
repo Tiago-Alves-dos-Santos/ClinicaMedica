@@ -1,4 +1,4 @@
-<div class="cardNumber-container mb-3 {{$class}}">
+<div class="cardNumber-container mb-3 {{$class}} text-md-center">
     <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
     <div class="titulo">
         <h6>{{$titulos}}</h6>
