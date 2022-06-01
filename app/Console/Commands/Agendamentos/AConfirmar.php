@@ -16,11 +16,11 @@ class AConfirmar extends Command
 
     /**
      * The console command description.
-     * A regra é que o status deve mudar para a cofirmar qnd tiver faltando um dia antes
+     * A regra é que o status deve mudar para a cofirmar qnd tiver faltando um dia antes e mudar para não realizado caso não confirmado e status 'a_confirmar'
      * Gerar uma notificação de agendamento a ser confirmado
      * @var string
      */
-    protected $description = 'Comando para verficar se deve mudar status para "a confirmar" ';
+    protected $description = 'Comando para verficar se deve mudar status do agendamento ';
 
     /**
      * Create a new command instance.
@@ -52,6 +52,16 @@ class AConfirmar extends Command
         foreach($agendamentos as $value){
             Agendamento::where('id', $value->id)->update([
                 'status_agendamento' => 'a_confirmar'
+            ]);
+        }
+
+       $nãoRealizados =  Agendamento::where('status_agendamento','a_confirmar')
+        ->whereDate('data_consulta', '<', $data_atual)
+        ->get();
+        foreach($nãoRealizados as $value){
+            Agendamento::where('id', $value->id)->update([
+                'status_agendamento' => 'nao-realizada',
+                'motivo' => 'Data do agendamento ultrapassada sem confirmamento do mesmo'
             ]);
         }
         return 1;
