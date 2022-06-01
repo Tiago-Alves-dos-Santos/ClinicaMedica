@@ -57,6 +57,10 @@ class AConfirmar extends Command
 
        $nãoRealizados =  Agendamento::where('status_agendamento','a_confirmar')
         ->whereDate('data_consulta', '<', $data_atual)
+        ->orWhere(function($q) use($data_atual){
+            $q->whereDate('data_consulta', $data_atual);
+            $q->whereTime('data_consulta', '<', date('H:i:s'));
+        })
         ->get();
         foreach($nãoRealizados as $value){
             Agendamento::where('id', $value->id)->update([
