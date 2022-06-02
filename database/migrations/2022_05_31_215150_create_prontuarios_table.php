@@ -19,13 +19,11 @@ class CreateProntuariosTable extends Migration
             //queixa principal, paciente fala
             $table->text('hda')->nullable();
             $table->text('historico_familiar')->nullable();
-            $table->text('historico_familiar')->nullable();
             $table->text('hpp')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at');
             //foreng keys
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('exame_fisico_id')->references('id')->on('exame_fisicos');
         });
     }
 

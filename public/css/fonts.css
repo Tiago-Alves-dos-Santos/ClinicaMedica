@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap);@charset "UTF-8";
+/***********************IMPORTS E FONTS****************************/
+/*font-family: 'Rubik', sans-serif;*/
+/*****FONTS ARQUIVOS******/
+@font-face {
+  font-family: "AlarmClock";
+  /*O nome da fonte é obrigatorio colocar com aspas simples*/
+  src: url("../fonts/alarm_clock.ttf");
+}

@@ -18,4 +18,7 @@ mix.js('resources/js/app.js', 'public/js')
     // .js('node_modules/fullcalendar/main.js','public/js/fullcalendar')
     // .js('node_modules/fullcalendar/locales/pt-br.js','public/js/fullcalendar')
     // .css('node_modules/fullcalendar/main.css','public/js/fullcalendar')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/fonts.scss', 'public/css').options({
+        processCssUrls: false
+    });

@@ -12,3 +12,12 @@ div.lt-central-container{
     background-size: cover;
     background-position: center;
 }
+/**********************LAYOUTS.ATENDIMENTO*********************/
+$width-sidebar-atendimento:300px;
+div.lt-atendimento-container{
+    position: absolute;
+    z-index: 100;
+    width: calc(100% - $width-sidebar-atendimento);
+    margin-left: $width-sidebar-atendimento;
+    height: 100%;
+}

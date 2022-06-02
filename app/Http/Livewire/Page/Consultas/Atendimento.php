@@ -10,7 +10,7 @@ class Atendimento extends Component
     {
         $links = ["Consultas","Atendimento"];
         return view('livewire.page.consultas.atendimento')
-        ->extends('layouts.home', ['titulo_pagina' => 'Prontuário', 'links' => $links])
+        ->extends('layouts.atendimento')
         ->section('body');
     }
 }

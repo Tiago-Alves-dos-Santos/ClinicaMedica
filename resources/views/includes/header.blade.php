@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="https://pradomed.com.br/wp-content/uploads/2016/05/icone_cardiologia.png">
     {{-- Meu css  --}}
+    <link rel="stylesheet" href="{{mix('css/fonts.css')}}">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel='stylesheet'>
     {{-- fullcalendar --}}
