@@ -192,9 +192,10 @@ class Configuracao
     /**
      * Afunção serve para data e hora, data, hora
      * o segundo parametro deve ser do mesmo tipo do primeiro
+     * o metodo serve apenas para exbição de diferenças de datas
      * @param [date|datetime|time] $data
      * @param [date|datetime|time] $segunda_data
-     * @return [string|datetime]
+     * @return [string]
      */
     public function diffDates($data,$segunda_data, $retorno)
     {
@@ -206,7 +207,6 @@ class Configuracao
                 return $intervalo->format('%H:%I:%S');
                 break;
             default:
-                return $intervalo;
                 break;
         }
 
