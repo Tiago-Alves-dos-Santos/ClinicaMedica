@@ -16,7 +16,8 @@ class Table extends Component
             'hora_inicio' => $datetime->format('H:i:s')
         ]);
         $rota = route('view.consultas.atendimento',[
-            'consulta_id' => $consulta_id
+            'consulta_id' => $consulta_id,
+            'status' => 'iniciada'
         ]);
 
         $this->emit('openGetRouteNewTab', $rota);

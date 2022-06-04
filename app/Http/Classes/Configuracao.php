@@ -188,4 +188,27 @@ class Configuracao
         asort($status_agendamento_opcoes);
         return $status_agendamento_opcoes;
     }
+
+    /**
+     * Afunção serve para data e hora, data, hora
+     * o segundo parametro deve ser do mesmo tipo do primeiro
+     * @param [date|datetime|time] $data
+     * @param [date|datetime|time] $segunda_data
+     * @return [string|datetime]
+     */
+    public function diffDates($data,$segunda_data, $retorno)
+    {
+        $data1 = new \DateTime($data);
+        $data2 = new \DateTime($segunda_data);
+        $intervalo = $data1->diff($data2);
+        switch ($retorno) {
+            case 'time':
+                return $intervalo->format('%H:%I:%S');
+                break;
+            default:
+                return $intervalo;
+                break;
+        }
+
+    }
 }

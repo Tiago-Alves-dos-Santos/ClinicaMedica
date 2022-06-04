@@ -94,3 +94,57 @@ function toogleFullScreen(){
     }
 }
 
+/** Cronometro */
+cronometro = {
+    hora:0,
+    minuto: 0,
+    segundo:0,
+    milesegundo:0,
+}
+
+let cron;
+
+function returnData(input) {
+    return input >= 10 ? input : `0${input}`
+}
+
+function timer(hora_id,minute_id,second_id, mlsecond_id) {
+    if ((cronometro.milesegundo += 10) == 1000) {
+      cronometro.milesegundo = 0;
+      cronometro.segundo++;
+    }
+    if (cronometro.segundo == 60) {
+        cronometro.segundo = 0;
+        cronometro.minuto++;
+    }
+    if (cronometro.minuto == 60) {
+        cronometro.minuto = 0;
+        cronometro.hora++;
+    }
+    document.getElementById(hora_id).innerText = returnData(cronometro.hora);
+    document.getElementById(minute_id).innerText = returnData(cronometro.minuto);
+    document.getElementById(second_id).innerText = returnData(cronometro.segundo);
+    //document.getElementById(mlsecond_id).innerText = returnData(cronometro.milesegundo);
+  }
+
+  function start(hora_id,minute_id,second_id, mlsecond_id) {
+    pause();
+    cron = setInterval(() => { timer(hora_id,minute_id,second_id, mlsecond_id); }, 10);
+  }
+
+  function pause() {
+    clearInterval(cron);
+  }
+
+  function reset(hora_id,minute_id,second_id, mlsecond_id) {
+    cronometro.hora = 0;
+    cronometro.minuto = 0;
+    cronometro.segundo = 0;
+    cronometro.milesegundo = 0;
+
+    document.getElementById(hora_id).innerText = '00';
+    document.getElementById(minute_id).innerText = '00';
+    document.getElementById(second_id).innerText = '00';
+    //document.getElementById(mlsecond_id).innerText = '000';
+  }
+

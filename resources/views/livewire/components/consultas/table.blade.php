@@ -19,7 +19,7 @@
                             <td>{{$value->medico_nome}}</td>
                             <td>{{$value->cliente_nome}}</td>
                             <td>{{date('d/m/Y H:i', strtotime($value->data_consulta))}}</td>
-                            <td>00:00</td>
+                            <td>{{Configuracao::diffDates($value->hora_inicio, $value->hora_final,'time')}}</td>
                             <td>
                                 @switch($value->status)
                                     @case('iniciada')

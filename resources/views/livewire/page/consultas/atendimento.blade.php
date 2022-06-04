@@ -29,13 +29,18 @@
     @push('scripts')
         <script>
             $(function(){
-                //dados consulta
-                $("#input_finalizar_consulta").val("{{$consulta->id}}");
+                //setar id na consulta no valor do component abaixo
+                Livewire.emit('finalizarAtendimento.setConsultaId', "{{$consulta->id}}");
                 //dados do cliente
                 $("#hora_inicio").html("{{$consulta->hora_inicio}}");
                 $("#cliente_nome").html("{{$consulta->cliente->nome}}");
                 $("#cliente_data").html("{{date('d/m/Y',strtotime($consulta->cliente->data_nascimento))}}");
                 $("#cliente_idade").html("{{$idade}}");
+
+                cronometro.segundo = "{{$diff_time_date['segundo']}}";
+                cronometro.minuto = "{{$diff_time_date['minuto']}}";
+                cronometro.hora = "{{$diff_time_date['hora']}}";
+                start('hour','min','second', '')
             });
         </script>
     @endpush
