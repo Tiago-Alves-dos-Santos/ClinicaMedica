@@ -22,3 +22,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/fonts.scss', 'public/css').options({
         processCssUrls: false
     });
+

@@ -4250,7 +4250,7 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #0d6efd;
+  color: #dc3545;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -11975,7 +11975,7 @@ div.lt-central-container {
   justify-content: center;
   align-items: center;
   align-content: center;
-  background-image: url("../../public/img/bg-login.jpeg");
+  background-image: url("../img/bg-login.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -12361,6 +12361,16 @@ div.sidebar-atendimento div.clock div.time h4, div.sidebar-atendimento div.clock
   position: relative;
   top: 5px;
   font-family: "AlarmClock";
+}
+div.sidebar-atendimento div.hora-consulta {
+  display: flex;
+  flex-direction: column;
+}
+div.sidebar-atendimento div.hora-consulta div.time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /**********************COMPONENTS*******************************/

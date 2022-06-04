@@ -304,4 +304,14 @@ div.sidebar-atendimento{
             }
         }
     }
+    div.hora-consulta{
+        display: flex;
+        flex-direction: column;
+        div.time{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+        }
+    }
 }
