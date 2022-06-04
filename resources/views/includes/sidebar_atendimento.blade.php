@@ -26,7 +26,7 @@
                 <span class="fw-bold text-success">
                     <i class="fa-solid fa-stopwatch"></i>
                 </span>
-                00:00:00
+                <span id="hora_inicio">00:00:00</span>
             </h5>
             <h5>
                 <span class="fw-bold text-danger">
@@ -40,21 +40,20 @@
         <div>
             <h6>
                 <span class="fw-bold">Nome:</span> <br>
-                Tiago Alves dos Santos de Oliveira
+                <span id="cliente_nome"></span>
             </h6>
             <h6>
                 <span class="fw-bold">Data nascimento:</span> <br>
-                02/02/2001
+                <span id="cliente_data"></span>
             </h6>
             <h6>
                 <span class="fw-bold">Idade:</span> <br>
-                21
+                <span id="cliente_idade"></span>
+
             </h6>
         </div>
     </div>
     <div class="form-finalizar mt-3 p-3">
-        <button type="button" class="btn btn-success d-block w-100">
-            Finalizar Consulta
-        </button>
+        <livewire:components.consultas.finalizar-atendimento>
     </div>
 </div>

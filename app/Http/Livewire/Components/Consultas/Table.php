@@ -8,6 +8,20 @@ use App\Http\Classes\Configuracao;
 
 class Table extends Component
 {
+    public $cliente_id = 0;
+    public function startConsulta($consulta_id)
+    {
+        $datetime = new \DateTime();
+        ClienteConsulta::where('id', $consulta_id)->update([
+            'hora_inicio' => $datetime->format('H:i:s')
+        ]);
+        $rota = route('view.consultas.atendimento',[
+            'consulta_id' => $consulta_id
+        ]);
+
+        $this->emit('openGetRouteNewTab', $rota);
+
+    }
     public function render()
     {
         return view('livewire.components.consultas.table',[

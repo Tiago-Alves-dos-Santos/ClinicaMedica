@@ -58,7 +58,7 @@ Route::get('/agedamento/editar/{agendamento_id}',AgendamentoEditar::class)->name
 
 //consultas
 Route::get('/consultas/dashboard', ConsultaDashboard::class)->name('view.consultas.dashboard');
-Route::get('/consultas/atendimento', Atendimento::class)->name('view.consultas.atendimento');
+Route::get('/consultas/atendimento/{consulta_id}', Atendimento::class)->name('view.consultas.atendimento');
 // Route::get('/teste',function(){
 //     return "teste";
 // });

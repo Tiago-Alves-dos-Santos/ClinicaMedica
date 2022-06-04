@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ClienteConsulta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,12 @@ class Cliente extends Model
     //pra inserção em massa
     protected $guarded = [];
     /**Relacionamnetos */
+
+    //muitas - n
+    public function consultas()
+    {
+        return $this->hasMany(ClienteConsulta::class);
+    }
 
     /**Outros dados */
     public static function cpfExists($cpf,$operacao ='cadastro',$id=0)

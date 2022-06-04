@@ -26,4 +26,17 @@
       </div>
 
     </div>
+    @push('scripts')
+        <script>
+            $(function(){
+                //dados consulta
+                $("#input_finalizar_consulta").val("{{$consulta->id}}");
+                //dados do cliente
+                $("#hora_inicio").html("{{$consulta->hora_inicio}}");
+                $("#cliente_nome").html("{{$consulta->cliente->nome}}");
+                $("#cliente_data").html("{{date('d/m/Y',strtotime($consulta->cliente->data_nascimento))}}");
+                $("#cliente_idade").html("{{$idade}}");
+            });
+        </script>
+    @endpush
 </div>

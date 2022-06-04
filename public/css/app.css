@@ -12371,6 +12371,7 @@ div.sidebar-atendimento div.hora-consulta div.time {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "AlarmClock";
 }
 
 /**********************COMPONENTS*******************************/

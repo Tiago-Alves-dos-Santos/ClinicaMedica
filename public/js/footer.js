@@ -15,6 +15,10 @@ $(function(){
         showToast(msg_toast.title, msg_toast.information, msg_toast.type, msg_toast.time);
     });
 
+    Livewire.on('openGetRouteNewTab',(route) => {
+        window.open(route);
+    });
+
 
 });
 

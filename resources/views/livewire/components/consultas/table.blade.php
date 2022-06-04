@@ -40,7 +40,7 @@
                                 @endswitch
                             </td>
                             <td>
-                                <a href="{{route('view.consultas.atendimento')}}" class="btn btn-success">
+                                <a class="btn btn-success" wire:click='startConsulta({{$value->id}})' target="_blank">
                                     INICIAR
                                 </a>
                             </td>
