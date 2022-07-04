@@ -11,7 +11,7 @@ class ExameFisico extends Model
     use HasFactory;
     use SoftDeletes;
     //tabela
-    protected $table = 'exame_fisicos';
+    protected $table = 'exame_fisico';
     //pra inserção em massa
     protected $guarded = [];
 }

@@ -189,6 +189,18 @@ class Configuracao
         return $status_agendamento_opcoes;
     }
 
+    public static function getOpcoesStatusConsulta()
+    {
+        $status_agendamento_opcoes =  [
+            'iniciada' => "INICIADA",
+            'realizada' => 'REALIZADA',
+            'nao-realizada' => 'NÃO REALIZADA',
+            'aguardando' => 'AGUARDANDO'
+        ];
+        asort($status_agendamento_opcoes);
+        return $status_agendamento_opcoes;
+    }
+
     /**
      * Afunção serve para data e hora, data, hora
      * o segundo parametro deve ser do mesmo tipo do primeiro

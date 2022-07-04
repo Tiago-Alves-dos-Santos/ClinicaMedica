@@ -16,6 +16,14 @@ class CreateExameFisicosTable extends Migration
         Schema::create('exame_fisicos', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('prontuario_id')->unsigned()->nullable();
+            $table->double('temperatura', 3, 1)->nullable();
+            $table->double('peso', 4, 2)->nullable();
+            $table->double('altura', 3, 2)->nullable();
+            $table->double('pa', 8, 2)->nullable();
+            $table->double('frequencia_cardiaca', 8, 2)->nullable();
+            $table->double('frequencia_respiratoria', 8, 2)->nullable();
+            $table->double('saturacao_oxigenio', 8, 2)->nullable();
+            $table->double('glicemia', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at');
             //foreng keys
