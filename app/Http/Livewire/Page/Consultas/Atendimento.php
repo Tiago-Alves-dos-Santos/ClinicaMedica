@@ -8,6 +8,7 @@ use App\Http\Classes\Configuracao;
 
 class Atendimento extends Component
 {
+    public $prontuario_id = null;
     public $consulta_id = 0;
     public $idade = 0;
     //dfirença de tempo, para saber o tempo exato decorrido para iniciar contador
@@ -17,10 +18,11 @@ class Atendimento extends Component
         'segundo' => 0,
         'milesegundo' => 0
     ];
-    public function mount($consulta_id)
+    public function mount($consulta_id,$status,$prontuario_id)
     {
         $datetime = new \DateTime();
         $this->consulta_id = $consulta_id;
+        $this->prontuario_id = $prontuario_id;
         $consulta = ClienteConsulta::find($this->consulta_id);
         $data_consulta = new \DateTime($consulta->hora_inicio);
         $diff_date = $datetime->diff($data_consulta);
@@ -34,7 +36,7 @@ class Atendimento extends Component
     {
         $links = ["Consultas","Atendimento"];
         return view('livewire.page.consultas.atendimento',[
-            'consulta' => ClienteConsulta::find($this->consulta_id)
+            'consulta' => ClienteConsulta::find($this->consulta_id),
         ])
         ->extends('layouts.atendimento')
         ->section('body');

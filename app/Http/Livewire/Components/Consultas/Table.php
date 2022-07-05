@@ -18,11 +18,6 @@ class Table extends Component
         $consulta->hora_inicio = $datetime->format('H:i:s');
         $consulta->status = "iniciada";
         $consulta->save();
-        $rota = route('view.consultas.atendimento',[
-            'consulta_id' => $consulta_id,
-            'status' => 'iniciada'
-        ]);
-
         $prontuario = Prontuario::create([
             'cliente_id' => $consulta->cliente_id
         ]);
@@ -31,8 +26,12 @@ class Table extends Component
             'prontuario_id' => $prontuario->id
         ]);
 
+        $rota = route('view.consultas.atendimento',[
+            'consulta_id' => $consulta_id,
+            'status' => 'iniciada',
+            'prontuario_id' => $prontuario->id
+        ]);
         //criar exame fisico e relacionar a prontuario
-
         $this->emit('openGetRouteNewTab', $rota);
 
     }
