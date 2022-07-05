@@ -43,31 +43,56 @@
                     {{-- Peso --}}
                     <label for="">P</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='peso'>
+                        <input type="number" step="0.01" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='peso'>
                         <span class="input-group-text" id="basic-addon2">Kg</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="">Height</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='altura' wire:change='calcIMC'>
+                        <input type="number" step="0.01" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='altura' wire:change='calcIMC'>
                         <span class="input-group-text" id="basic-addon2">M</span>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="">IMC - {{$imc}}</label>
+                    <label for="">IMC</label>
+
                     @if($imc < 18.5 && $imc > 0)
-                    <span>Abaixo do peso</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 16.17%; font-size:18px" aria-valuemin="0" aria-valuemax="40">
+                            Abaixo do peso - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @elseif($imc >= 18.5 && $imc < 24.9)
-                    <span>Peso normal</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 33.34%; font-size:18px"  aria-valuemin="0" aria-valuemax="40">
+                            Peso normal - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @elseif($imc >= 25 && $imc < 29.9)
-                    <span>Sobrepeso</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 50.01%; font-size:18px"  aria-valuemin="0" aria-valuemax="40">
+                            Sobrepeso - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @elseif($imc >= 30 && $imc < 34.9)
-                    <span>Obesidade grau 1</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 66.68%; font-size:18px"  aria-valuemin="0" aria-valuemax="40">
+                            Obesidade grau 1 - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @elseif($imc >= 35 && $imc < 39.9)
-                    <span>Obesidade grau 2</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 83.35%; font-size:18px"  aria-valuemin="0" aria-valuemax="40">
+                            Obesidade grau 2 - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @elseif($imc >= 40)
-                    <span>Obesidade grau 3</span>
+                    <div class="progress" style="height: 2rem">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; font-size:18px"  aria-valuemin="0" aria-valuemax="40">
+                            Obesidade grau 3 - {{number_format($imc, 1, '.', '')}}
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>
@@ -76,7 +101,7 @@
                 <div class="col-md-4">
                     <label for="">PA</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='pa'>
+                        <input type="number" step="0.01" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='pa'>
                         <span class="input-group-text" id="basic-addon2">mm/Hg</span>
                     </div>
                 </div>
@@ -84,7 +109,7 @@
                     {{-- Frequencia cardiaca --}}
                     <label for="">FC</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='frequencia_cardiaca'>
+                        <input type="number" step="0.01" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='frequencia_cardiaca'>
                         <span class="input-group-text" id="basic-addon2">Bpm</span>
                     </div>
                 </div>
@@ -92,30 +117,38 @@
                     {{-- Frequencia respiratoria --}}
                     <label for="">FR</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='frequencia_respiratoria'>
+                        <input type="number" step="0.01" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='frequencia_respiratoria'>
                         <span class="input-group-text" id="basic-addon2">Mpm</span>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    {{-- temperatura --}}
+                    <label for="">T</label>
+                    <div class="input-group mb-3">
+                        <input type="number" step="0.1" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='temperatura'>
+                        <span class="input-group-text" id="basic-addon2">C°</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     {{-- Saturação de oxigenio --}}
                     <label for="">SAT O2</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='saturacao_oxigenio'>
+                        <input type="number" step="0.01" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='saturacao_oxigenio'>
                         <span class="input-group-text" id="basic-addon2">%</span>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {{-- Frequencia cardiaca --}}
                     <label for="">Glicemia</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='glicemia'>
+                        <input type="number" step="0.01" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2" wire:model.lazy='glicemia'>
                         <span class="input-group-text" id="basic-addon2">mg/dl</span>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex justify-content-end  align-items-end">
+                <div class="col-md-3 d-flex justify-content-end  align-items-end">
                     <button type="submit" class="btn btn-primary">
                         SALVAR
                     </button>

@@ -19,6 +19,7 @@ class CreateExameFisicosTable extends Migration
             $table->double('temperatura', 3, 1)->nullable();
             $table->double('peso', 4, 2)->nullable();
             $table->double('altura', 3, 2)->nullable();
+            $table->double('imc', 3, 1)->nullable();
             $table->double('pa', 8, 2)->nullable();
             $table->double('frequencia_cardiaca', 8, 2)->nullable();
             $table->double('frequencia_respiratoria', 8, 2)->nullable();

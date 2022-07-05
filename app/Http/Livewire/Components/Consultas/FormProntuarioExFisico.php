@@ -46,6 +46,7 @@ class FormProntuarioExFisico extends Component
             'temperatura' => $this->temperatura,
             'peso' => $this->peso,
             'altura' => $this->altura,
+            'imc' => number_format($this->imc, 1, '.', ''),
             'pa' => $this->pa,
             'frequencia_cardiaca' => $this->frequencia_cardiaca,
             'frequencia_respiratoria' => $this->frequencia_respiratoria,
