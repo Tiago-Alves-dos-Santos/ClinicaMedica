@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Recepcionista;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Cid10\Cid10TableSeeder;
+use Database\Seeders\sigtap\SigTapTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         //Recepcionista::factory(30)->create();
-        $this->call(Cid10TableSeeder::class);
+        //$this->call(Cid10TableSeeder::class);
+        $this->call(SigTapTableSeeder::class);
     }
 }
